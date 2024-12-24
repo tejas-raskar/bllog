@@ -1,5 +1,5 @@
 export const Quote = () => {
-    return <div className="bg-gray-200 h-screen flex justify-center flex-col">
+    return <div className="bg-gray-100 h-screen flex justify-center flex-col">
         <div className="flex justify-center">
                 <div className="max-w-lg">
                     <div className="text-2xl font-bold">
@@ -9,7 +9,7 @@ export const Quote = () => {
                         Jules Winnfield
                     </div>
                     <div className="font-extralight">
-                        CEO, Acme Inc.
+                        CEO, Acme Inc
                     </div>
                 </div>
         </div>
