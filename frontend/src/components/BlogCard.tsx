@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 interface BlogCardProps {
+    id: string;
     authorname: string;
     title: string;
     content: string;
@@ -6,37 +9,40 @@ interface BlogCardProps {
 }
 
 export const BlogCard = ({
+    id,
     authorname,
     title,
     content,
     publishedDate
 }: BlogCardProps) => {
-    return <div className="p-3">
-        <div className="flex py-2">
-            <div>
-                <Avatar name={authorname} size="small"/> 
+    return <Link to={`/blog/${id}`}> 
+        <div className="p-3 w-screen max-w-screen-md">
+            <div className="flex py-2">
+                <div>
+                    <Avatar name={authorname} size="small"/> 
+                </div>
+                <div className="flex justify-center flex-col pl-2 text-sm">
+                    {authorname}
+                </div>
+                <div className="flex justify-center flex-col px-2">
+                    <CircleSeparator />
+                </div>
+                <div className="flex justify-center flex-col text-sm font-light text-gray-800">
+                    {publishedDate}
+                </div>
             </div>
-            <div className="flex justify-center flex-col pl-2 text-sm">
-                {authorname}
+            <div className="font-extrabold text-2xl">
+                {title}
             </div>
-            <div className="flex justify-center flex-col px-2">
-                <CircleSeparator />
+            <div className="text-slate-600 font-serif font-medium py-2">
+                {content.slice(0, 150) + "..."}
             </div>
-            <div className="flex justify-center flex-col text-sm font-light text-gray-800">
-                {publishedDate}
+            <div className="font-light text-gray-800 pt-6 pb-2">
+                {`${Math.ceil(content.length / 100)} min read`}
             </div>
+            <hr /> 
         </div>
-        <div className="font-extrabold text-2xl">
-            {title}
-        </div>
-        <div className="text-slate-600 font-serif font-medium py-2">
-            {content.slice(0, 150) + "..."}
-        </div>
-        <div className="font-light text-gray-800 pt-6 pb-2">
-            {`${Math.ceil(content.length / 100)} min read`}
-        </div>
-        <hr /> 
-    </div>
+    </Link>
 } 
 
 function CircleSeparator() {
