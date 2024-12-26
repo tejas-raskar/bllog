@@ -11,10 +11,10 @@ export const BlogCard = ({
     content,
     publishedDate
 }: BlogCardProps) => {
-    return <div>
+    return <div className="p-3">
         <div className="flex py-2">
             <div>
-                <Avatar name={authorname}/> 
+                <Avatar name={authorname} size="small"/> 
             </div>
             <div className="flex justify-center flex-col pl-2 text-sm">
                 {authorname}
@@ -45,12 +45,12 @@ function CircleSeparator() {
     </div>
 }
 
-function Avatar({name}: {name: string}) {
+export function Avatar({name, size}: {name: string, size: "small" | "big"}) {
     const splitName = name.split(' ');
     const firstName = splitName[0];
     const lastName = splitName[1];
-    return <div className="relative inline-flex items-center justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-        <span className="font-small text-xs text-gray-600 dark:text-gray-300">{firstName[0] + lastName[0]}</span>
+    return <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6" : "w-10 h-10"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
+        <span className={`font-small ${size === "small" ? "text-xs" : "text-base"} text-gray-600 dark:text-gray-300`}>{firstName[0] + lastName[0]}</span>
     </div>
     
 }
