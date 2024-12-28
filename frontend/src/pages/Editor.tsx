@@ -3,14 +3,11 @@ import { Tiptap } from "../components/TipTap"
 
 export const Editor = () => {
     return <div>
-        <AppBar /> 
-        <div className="flex justify-center"></div>
-            <div className="flex justify-center mt-20 max-w-4xl">
-                <div className="max-w-4xl">
-                    <div>
-                        <Tiptap />
-                    </div>
-                </div>
+        <AppBar type="editor" /> 
+        <div className="flex justify-center">
+            <div className="flex justify-center mt-15 max-w-4xl">
+                <Tiptap />
             </div>
         </div>
+    </div>
 }

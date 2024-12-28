@@ -35,6 +35,7 @@ export const useBlog = ({ id } : { id: string }) => {
 
 export const useBlogs = () => {
     const [loading, setLoading] = useState(true);
+    const [unauthorised, setUnauthorised] = useState(false);
     const [blogs, setBlogs] = useState<Blog[]>([]);
     useEffect(() => {
         axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
@@ -46,10 +47,17 @@ export const useBlogs = () => {
                 setBlogs(response.data.blogs);
                 setLoading(false);
             })
+            .catch(error => {
+                if (error.response && error.response.status === 403) {
+                    setUnauthorised(true);
+                }
+                setLoading(false);
+            });
     }, [])
 
     return {
     loading,
+    unauthorised,
     blogs
     }
 }

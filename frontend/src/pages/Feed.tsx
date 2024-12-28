@@ -1,16 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { AppBar } from "../components/AppBar"
 import { BlogCard } from "../components/BlogCard"
 import { useBlogs } from "../hooks"
 
 export const Feed = () => {
-    const { loading, blogs } = useBlogs();
+    const { loading, unauthorised, blogs } = useBlogs();
+    const navigate = useNavigate();
+    if (unauthorised) {
+        navigate('/signin')
+    }
     if (loading) {
         return <div>
             loading
         </div>
     }
     return <div>
-        <AppBar />
+        <AppBar type="main"/>
         <div className="flex justify-center"> 
             <div>
                 {blogs.map(blog => 
