@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { AppBar } from "../components/AppBar"
 import { BlogCard } from "../components/BlogCard"
 import { useBlogs } from "../hooks"
+import { Skeleton } from "../components/Skeleton";
 
 export const Feed = () => {
     const { loading, unauthorised, blogs } = useBlogs();
@@ -11,8 +12,15 @@ export const Feed = () => {
     }
     if (loading) {
         return <div>
-            loading
+        <AppBar type="main"/>
+        <div className="flex justify-center"> 
+            <div>
+                <Skeleton type="feed"/>                
+                <Skeleton type="feed"/>                
+                <Skeleton type="feed"/>                
+            </div>
         </div>
+    </div>
     }
     return <div>
         <AppBar type="main"/>

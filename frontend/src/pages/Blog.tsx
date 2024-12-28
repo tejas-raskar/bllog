@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useBlog } from "../hooks"
 import { BlogDetails } from "../components/BlogDetails";
 import { AppBar } from "../components/AppBar";
+import { Skeleton } from "../components/Skeleton";
 
 export const Blog = () => {
     const { id } = useParams();
@@ -9,10 +10,14 @@ export const Blog = () => {
         id: id || ""
     });
     if (loading) {
-        return <div>
-            loading...
+        return <div> 
+        <AppBar type="main"/>
+        <div>
+            <Skeleton type="blog" />
         </div>
+    </div>
     }
+    
     if (!blog) {
         return <div className="flex justify-center h-screen">
             <div className="flex flex-col justify-center text-xl font-bold">
@@ -21,7 +26,7 @@ export const Blog = () => {
         </div>
     }
     return <div> 
-        <AppBar />
+        <AppBar type="main"/>
         <div>
             <BlogDetails blog={ blog }/>
         </div>

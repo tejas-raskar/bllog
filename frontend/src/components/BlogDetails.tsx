@@ -15,11 +15,13 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                     {blog.content}
                 </div>
             </div>
-            <div className="col-span-3 bg-white">
-                Author
+            <div className="col-span-3">
+                <div className="font-medium text-gray-600 mb-2">
+                    Author
+                </div>
                 <div className="flex">
                     <div className="flex justify-center flex-col pr-4">
-                        <Avatar size="small" name={blog.author.name}/>
+                        <Avatar size="big" name={blog.author.name}/>
                     </div>
                     <div>
                         <div className="font-bold text-xl">
