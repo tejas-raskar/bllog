@@ -17,8 +17,9 @@ model User {
 
 model Blog {
   id String @id @default(uuid())
-  title String
-  content String
+  title String?
+  content String?
+  blog Json
   published Boolean @default(false)
   authorId String
   author User @relation(fields: [authorId], references: [id])
