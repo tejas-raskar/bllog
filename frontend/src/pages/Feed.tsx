@@ -31,7 +31,7 @@ export const Feed = () => {
                 id={blog.id}
                 authorname = {blog.author.name} 
                 title = {blog.title}
-                content= {blog.content} 
+                content= {blog.blog} 
                 publishedDate="Dec. 26, 2024"/>)}
                 
             </div>

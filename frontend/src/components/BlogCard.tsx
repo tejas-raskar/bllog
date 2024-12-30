@@ -1,10 +1,12 @@
+import { useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 import { Link } from "react-router-dom";
 
 interface BlogCardProps {
     id: string;
     authorname: string;
     title: string;
-    content: string;
+    content: JSON;
     publishedDate: string;
 }
 
@@ -35,15 +37,37 @@ export const BlogCard = ({
                 {title}
             </div>
             <div className="text-slate-600 font-serif font-medium py-2">
-                {content.slice(0, 150) + "..."}
+                {/* {content.slice(0, 150) + "..."} */}
+                
+                <Description blogJSON={content}/>
             </div>
-            <div className="font-light text-gray-800 pt-6 pb-2">
+            {/* <div className="font-light text-gray-800 pt-6 pb-2">
                 {`${Math.ceil(content.length / 100)} min read`}
-            </div>
+            </div> */}
             <hr /> 
         </div>
     </Link>
 } 
+
+function Description({ blogJSON }: { blogJSON: JSON }) {
+    const editor = useEditor({
+        editable: false,
+        extensions: [StarterKit],
+        content: blogJSON,
+        editorProps: {
+            attributes: {
+              class: 'prose prose-sm sm:prose-base lg:prose-lg m-5 focus:outline-none'
+            }
+          },
+          parseOptions: {
+            preserveWhitespace: 'full',
+          },
+    })
+    const description = editor?.getText().slice(0, 360);
+    return <div className="max-h-32 line-clamp-3">
+        {description}
+    </div>
+}
 
 export function CircleSeparator() {
     return <div className="h-1 w-1 bg-gray-300 rounded-full">
