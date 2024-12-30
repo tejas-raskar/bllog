@@ -5,19 +5,25 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import StarterKit from '@tiptap/starter-kit'
 import { TitleInput } from "../components/TitleInput";
-
-const content = "Start writing here..."
+import Placeholder from "@tiptap/extension-placeholder";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Editor = () => {
+  const [title, setTitle] = useState("");
+  const navigate = useNavigate();
   const editor = useEditor({
     extensions: [
+      Placeholder.configure({
+        emptyEditorClass: "before:content-[attr(data-placeholder)] before:float-left before:text-[#adb5bd] before:h-0 before:pointer-events-none",
+        placeholder: "Start writing here..."
+      }),
       StarterKit.configure({
         heading: {
           levels: [1, 2, 3],
         }
       })
     ],
-    content,
     editorProps: {
       attributes: {
         class: 'prose prose-sm sm:prose-base lg:prose-lg m-5 focus:outline-none'
@@ -31,11 +37,26 @@ export const Editor = () => {
   async function publishBlog() {
     if (!editor) return
     const blogJSON = editor.getJSON();
-    await axios.post(`${BACKEND_URL}/api/v1/blog`, blogJSON, {
-      headers: {
-        Authorization: localStorage.getItem("token")
+    const blogTitle = title;
+    try {
+      const res = await axios.post(`${BACKEND_URL}/api/v1/blog`,
+        {
+          title: blogTitle,
+          blog: blogJSON
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }
+      )
+
+      if(res.status == 200) {
+        navigate(`/blog/${res.data.id}`)
       }
-    })
+    } catch (e) {
+      // TODO: Alert user using toast (?)
+    }
   }
   return <div>
     <AppBar type="editor" onClick={publishBlog} />
@@ -43,10 +64,10 @@ export const Editor = () => {
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
           <div>
-            <TitleInput /> 
+            <TitleInput setTitle={setTitle} title={title} />
           </div>
         </div>
-        <div className="flex justify-center max-w-3xl">
+        <div className="max-w-3xl">
           <div>
             <Tiptap editor={editor} />
           </div>

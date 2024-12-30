@@ -1,11 +1,10 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef} from "react";
 
-export const TitleInput = () => {
+export const TitleInput = ({ title, setTitle }: {title: string, setTitle:any}) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    const [val, setVal] = useState("");
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setVal(e.target.value);
+        setTitle(e.target.value);
     };
 
     useEffect(() => {
@@ -13,7 +12,7 @@ export const TitleInput = () => {
             textAreaRef.current.style.height = "auto";
             textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
         }
-    }, [val]);
+    }, [title]);
 
     return (
         <div className=''>
@@ -21,7 +20,7 @@ export const TitleInput = () => {
                 maxLength={150}
                 placeholder="Article Title"
                 className="font-bold text-3xl text-wrap p-4 w-full focus:outline-none resize-none"
-                value={val}
+                value={title}
                 onChange={handleChange}
                 rows={1}
                 ref={textAreaRef}
