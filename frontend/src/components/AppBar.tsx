@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { Avatar } from "./BlogCard"
 import { Button } from "@material-tailwind/react"
 
-export const AppBar = ({ type = "main", onClick }: { type: "main" | "editor", onClick: () => Promise<void> }) => {
+export const AppBar = ({ type = "main", onClick }: { type: "main" | "editor", onClick?: () => Promise<void> }) => {
     return <div className="flex justify-between border-b px-10 py-4">
         <Link to={'/feed'} className="flex justify-center flex-col text-xl">
             <div>

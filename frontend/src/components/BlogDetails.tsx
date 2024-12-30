@@ -5,14 +5,16 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
     return <div className="flex justify-center"> 
         <div className="grid grid-cols-12 px-20 pt-10 w-full max-w-screen-xl"> 
             <div className="col-span-9">
-                <div className="text-4xl font-extrabold pb-2">
+                {/* <div className="text-4xl font-extrabold pb-2">
                     {blog.title}
                 </div>
                 <div className="font-medium text-gray-400 pb-6">
                     Posted on Dec. 26, 2024
-                </div>
+                </div> */}
+
+                {/* TODO: beutify the content */}
                 <div className="text-base text-gray-700">
-                    {blog.content}
+                    {JSON.stringify(blog.blog)}
                 </div>
             </div>
             <div className="col-span-3">
