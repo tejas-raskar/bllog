@@ -12,7 +12,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                             <Typography
                                 as="div"
                                 variant="h1"
-                                className="h-3 w-32 rounded-full bg-gray-200"
+                                className="h-3 w-24 rounded-full bg-gray-200"
                                 placeholder
                                 onPointerEnterCapture
                                 onPointerLeaveCapture
@@ -27,7 +27,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                             <Typography
                                 as="div"
                                 variant="h1"
-                                className="h-3 w-32 rounded-full bg-gray-200"
+                                className="h-3 w-24 rounded-full bg-gray-200"
                                 placeholder
                                 onPointerEnterCapture
                                 onPointerLeaveCapture
@@ -40,7 +40,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="h1"
-                            className="mb-2 h-5 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-5 w-full rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -52,7 +52,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 w-full rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -62,7 +62,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 w-full rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -72,7 +72,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 w-full rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -84,7 +84,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="h1"
-                            className="h-3 w-32 rounded-full bg-gray-200"
+                            className="h-3 w-20 rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture

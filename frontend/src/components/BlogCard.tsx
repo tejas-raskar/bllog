@@ -18,7 +18,7 @@ export const BlogCard = ({
     publishedDate
 }: BlogCardProps) => {
     return <Link to={`/blog/${id}`}> 
-        <div className="p-3 w-screen max-w-screen-md">
+        <div className="p-3 max-w-2xl">
             <div className="flex py-2">
                 <div>
                     <Avatar name={authorname} size="small"/> 
@@ -56,15 +56,16 @@ export function BlogReader({ blogJSON, type }: { blogJSON: JSON, type: "mini" | 
           }
     })
     if(!editor) return;
-    const description = editor.getText();
-
+    const rawText = editor.getText();
+    const numberOfWords = rawText.split(' ').length;
+    const description = rawText.slice(0,360);
     if(type === "mini") {
         return <div> 
             <div className="max-h-32 line-clamp-3">
                 {description}
             </div>
             <div className="font-light text-xs text-gray-800 pt-6 pb-2">
-                {`${Math.ceil(description.length / 100)} min read`}
+                {`${Math.ceil(numberOfWords / 265)} min read`}
             </div>
         </div>
     } else {
