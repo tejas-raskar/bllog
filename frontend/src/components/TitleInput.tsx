@@ -19,7 +19,7 @@ export const TitleInput = ({ title, setTitle }: {title: string, setTitle:any}) =
             <textarea
                 maxLength={150}
                 placeholder="Article Title"
-                className="font-bold text-3xl text-wrap p-4 w-full focus:outline-none resize-none"
+                className="font-extrabold text-4xl text-wrap p-4 w-full focus:outline-none resize-none"
                 value={title}
                 onChange={handleChange}
                 rows={1}

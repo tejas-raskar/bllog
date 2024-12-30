@@ -1,4 +1,4 @@
-import { useEditor } from "@tiptap/react";
+import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Link } from "react-router-dom";
 
@@ -36,20 +36,15 @@ export const BlogCard = ({
             <div className="font-extrabold text-2xl">
                 {title}
             </div>
-            <div className="text-slate-600 font-serif font-medium py-2">
-                {/* {content.slice(0, 150) + "..."} */}
-                
-                <Description blogJSON={content}/>
+            <div className="text-slate-600 font-medium py-2">                
+                <BlogReader type="mini" blogJSON={content}/>
             </div>
-            {/* <div className="font-light text-gray-800 pt-6 pb-2">
-                {`${Math.ceil(content.length / 100)} min read`}
-            </div> */}
             <hr /> 
         </div>
     </Link>
 } 
 
-function Description({ blogJSON }: { blogJSON: JSON }) {
+export function BlogReader({ blogJSON, type }: { blogJSON: JSON, type: "mini" | "full" }) {
     const editor = useEditor({
         editable: false,
         extensions: [StarterKit],
@@ -58,15 +53,23 @@ function Description({ blogJSON }: { blogJSON: JSON }) {
             attributes: {
               class: 'prose prose-sm sm:prose-base lg:prose-lg m-5 focus:outline-none'
             }
-          },
-          parseOptions: {
-            preserveWhitespace: 'full',
-          },
+          }
     })
-    const description = editor?.getText().slice(0, 360);
-    return <div className="max-h-32 line-clamp-3">
-        {description}
-    </div>
+    if(!editor) return;
+    const description = editor.getText();
+
+    if(type === "mini") {
+        return <div> 
+            <div className="max-h-32 line-clamp-3">
+                {description}
+            </div>
+            <div className="font-light text-xs text-gray-800 pt-6 pb-2">
+                {`${Math.ceil(description.length / 100)} min read`}
+            </div>
+        </div>
+    } else {
+        return <EditorContent editor={editor} />
+    }
 }
 
 export function CircleSeparator() {
