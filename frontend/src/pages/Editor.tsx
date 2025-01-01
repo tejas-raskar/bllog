@@ -21,7 +21,7 @@ export const Editor = () => {
       StarterKit.configure({
         heading: {
           levels: [1, 2, 3],
-        }
+        },
       })
     ],
     editorProps: {
@@ -51,7 +51,7 @@ export const Editor = () => {
         }
       )
 
-      if(res.status == 200) {
+      if (res.status == 200) {
         navigate(`/blog/${res.data.id}`)
       }
     } catch (e) {
