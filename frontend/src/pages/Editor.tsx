@@ -9,10 +9,14 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Link from "@tiptap/extension-link";
+import Underline from "@tiptap/extension-underline";
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import { common, createLowlight } from 'lowlight'
 
 export const Editor = () => {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
+  const lowlight = createLowlight(common);
   const editor = useEditor({
     extensions: [
       Placeholder.configure({
@@ -24,7 +28,11 @@ export const Editor = () => {
           levels: [1, 2, 3],
         },
       }),
-      Link
+      Link,
+      Underline,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
     ],
     editorProps: {
       attributes: {
