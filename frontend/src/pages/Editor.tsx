@@ -8,6 +8,7 @@ import { TitleInput } from "../components/TitleInput";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Link from "@tiptap/extension-link";
 
 export const Editor = () => {
   const [title, setTitle] = useState("");
@@ -22,7 +23,8 @@ export const Editor = () => {
         heading: {
           levels: [1, 2, 3],
         },
-      })
+      }),
+      Link
     ],
     editorProps: {
       attributes: {
