@@ -12,6 +12,7 @@ import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import { common, createLowlight } from 'lowlight'
+import CharacterCount from "@tiptap/extension-character-count";
 
 export const Editor = () => {
   const [title, setTitle] = useState("");
@@ -30,6 +31,7 @@ export const Editor = () => {
       }),
       Link,
       Underline,
+      CharacterCount,
       CodeBlockLowlight.configure({
         lowlight,
       }),
@@ -69,7 +71,7 @@ export const Editor = () => {
     }
   }
   return <div>
-    <AppBar type="editor" onClick={publishBlog} />
+    <AppBar type="editor" onClick={publishBlog} editor={editor} />
     <div className="flex justify-center">
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">

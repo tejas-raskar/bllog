@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
+    "@tiptap/extension-character-count": "^2.11.0",
     "@tiptap/extension-code-block-lowlight": "^2.11.0",
     "@tiptap/extension-color": "^2.10.4",
     "@tiptap/extension-floating-menu": "^2.11.0",

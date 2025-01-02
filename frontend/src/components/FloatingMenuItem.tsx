@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 
 export const FloatingMenuItem = ({ icon, title, description }: { icon: ReactNode, title: string, description: string }) => {
-    return <div className="flex my-1">
+    return <div className="flex">
         <div className="flex flex-col justify-center">
             <div className="bg-gray-200 p-2 rounded-md">
                 {icon}

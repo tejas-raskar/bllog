@@ -8,13 +8,21 @@
       margin-top: 0;
     }
 
+    blockquote {
+        border-left: 3px solid var(gray);
+        margin: 1.5rem 0;
+        padding-left: 1rem;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+
     code {
         background-color: rgb(232, 232, 232);
         border-radius: 0.4rem;
         color: var(black);
         font-size: 0.85rem;
         padding: 0.25em 0.3em;
-      }
+    }
   
     pre {
       background: black;
