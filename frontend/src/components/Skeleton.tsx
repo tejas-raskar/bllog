@@ -98,8 +98,8 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
         );
     } else {
         return <div className="flex justify-center animate-pulse max-w-full">
-            <div className="grid grid-cols-12 px-20 pt-10 w-full max-w-screen-xl">
-                <div className="col-span-9">
+            <div className="grid grid-cols-12 px-10 lg:px-20 pt-10 w-full max-w-screen-xl">
+                <div className="col-span-12 lg:col-span-9">
                     <div className="pb-2">
                         <Typography
                             as="div"
@@ -167,7 +167,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         </Typography>
                     </div>
                 </div>
-                <div className="col-span-3 bg-white">
+                <div className="hidden lg:col-span-3 lg:block bg-white">
                     <div className="font-medium text-gray-600 mb-2">
                         Author
                     </div>
