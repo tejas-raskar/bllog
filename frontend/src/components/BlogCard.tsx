@@ -1,3 +1,4 @@
+import Image from "@tiptap/extension-image";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Link } from "react-router-dom";
@@ -47,7 +48,7 @@ export const BlogCard = ({
 export function BlogReader({ blogJSON, type }: { blogJSON: JSON, type: "mini" | "full" }) {
     const editor = useEditor({
         editable: false,
-        extensions: [StarterKit],
+        extensions: [StarterKit, Image],
         content: blogJSON,
         editorProps: {
             attributes: {

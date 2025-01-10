@@ -16,6 +16,14 @@ import CharacterCount from "@tiptap/extension-character-count";
 import FileHandler from "@tiptap-pro/extension-file-handler";
 import Image from "@tiptap/extension-image";
 import { UploadImage } from "../components/UploadImage";
+import { Client, ID, Storage } from "appwrite";
+
+const client = new Client();
+client
+  .setEndpoint()
+  .setProject();
+
+const storage = new Storage(client);
 
 export const Editor = () => {
   const [title, setTitle] = useState("");
@@ -32,6 +40,7 @@ export const Editor = () => {
         heading: {
           levels: [1, 2, 3],
         },
+        codeBlock: false,
       }),
       Link,
       Underline,
@@ -47,21 +56,33 @@ export const Editor = () => {
             const fileReader = new FileReader()
             fileReader.readAsDataURL(file)
             fileReader.onload = () => {
-              currentEditor.chain().insertContentAt(pos, {
-                type: 'image',
-                attrs: {
-                  src: fileReader.result,
-                },
-              }).focus().run()
+              const promise = storage.createFile(
+                '',
+                ID.unique(),
+                file
+                // document.getElementById('uploader').files[0]
+              );
+
+              promise.then(function (response) {
+                const result = `https://cloud.appwrite.io/v1/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${projectId}`
+                console.log(result);
+                currentEditor.chain().insertContentAt(pos, {
+                  type: 'image',
+                  attrs: {
+                    src: result,
+                  },
+                }).focus().run()
+                // console.log(response); // Success
+              }, function (error) {
+                console.log(error); // Failure
+              });
             }
           })
         },
         onPaste: (currentEditor, files, htmlContent) => {
           files.forEach(file => {
             if (htmlContent) {
-              // if there is htmlContent, stop manual insertion & let other extensions handle insertion via inputRule
-              // you could extract the pasted file from this url string and upload it to a server for example
-              console.log(htmlContent) // eslint-disable-line no-console
+              console.log(htmlContent)
               return false
             }
 
