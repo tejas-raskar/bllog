@@ -53,8 +53,10 @@ blogRouter.post("/", async (c) => {
     try {
         const blog = await prisma.blog.create({
             data: {
-                blog: body,
-                authorId: authorId
+                title: body.title,
+                blog: body.blog,
+                authorId: authorId,
+                images: body.images,
             }
         })
         return c.json({
@@ -102,7 +104,7 @@ blogRouter.get("/bulk", async (c) => {
     const blogs = await prisma.blog.findMany({
         select: {
             title: true,
-            content: true,
+            blog: true,
             id: true,
             author: {
                 select: {

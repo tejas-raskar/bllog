@@ -23,4 +23,6 @@ model Blog {
   published Boolean @default(false)
   authorId String
   author User @relation(fields: [authorId], references: [id])
+  images String[] @default([])
+  featuredImage String?
 }
