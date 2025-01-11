@@ -16,18 +16,12 @@ import CharacterCount from "@tiptap/extension-character-count";
 import FileHandler from "@tiptap-pro/extension-file-handler";
 import Image from "@tiptap/extension-image";
 import { UploadImage } from "../components/UploadImage";
-import { Client, ID, Storage } from "appwrite";
-
-const client = new Client();
-client
-  .setEndpoint()
-  .setProject();
-
-const storage = new Storage(client);
+import { uploadImage } from "../api/Images";
 
 export const Editor = () => {
   const [title, setTitle] = useState("");
   const [featuredImg, setFeaturedImg] = useState(false);
+  const [images, setImages] = useState<String[]>([]);
   const navigate = useNavigate();
   const lowlight = createLowlight(common);
   const editor = useEditor({
@@ -55,27 +49,18 @@ export const Editor = () => {
           files.forEach(file => {
             const fileReader = new FileReader()
             fileReader.readAsDataURL(file)
-            fileReader.onload = () => {
-              const promise = storage.createFile(
-                '',
-                ID.unique(),
-                file
-                // document.getElementById('uploader').files[0]
-              );
-
-              promise.then(function (response) {
-                const result = `https://cloud.appwrite.io/v1/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${projectId}`
-                console.log(result);
+            fileReader.onload = async () => {
+              const response = await uploadImage(file);
+              if(response) {
+                setImages(images => [...images, response.$id]);
+                const imageUrl = `${import.meta.env.VITE_ENDPOINT}/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${import.meta.env.VITE_PROJECT_ID}`
                 currentEditor.chain().insertContentAt(pos, {
                   type: 'image',
                   attrs: {
-                    src: result,
+                    src: imageUrl,
                   },
                 }).focus().run()
-                // console.log(response); // Success
-              }, function (error) {
-                console.log(error); // Failure
-              });
+              }
             }
           })
         },
@@ -87,15 +72,19 @@ export const Editor = () => {
             }
 
             const fileReader = new FileReader()
-
             fileReader.readAsDataURL(file)
-            fileReader.onload = () => {
-              currentEditor.chain().insertContentAt(currentEditor.state.selection.anchor, {
-                type: 'image',
-                attrs: {
-                  src: fileReader.result,
-                },
-              }).focus().run()
+            fileReader.onload = async () => {
+              const response = await uploadImage(file);
+              if (response) {
+                setImages(images => [...images, response.$id]);
+                const imageUrl = `${import.meta.env.VITE_ENDPOINT}/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${import.meta.env.VITE_PROJECT_ID}`
+                currentEditor.chain().insertContentAt(currentEditor.state.selection.anchor, {
+                  type: 'image',
+                  attrs: {
+                    src: imageUrl,
+                  },
+                }).focus().run()
+              }
             }
           })
         },
@@ -119,7 +108,8 @@ export const Editor = () => {
       const res = await axios.post(`${BACKEND_URL}/api/v1/blog`,
         {
           title: blogTitle,
-          blog: blogJSON
+          blog: blogJSON,
+          images: images,
         },
         {
           headers: {
