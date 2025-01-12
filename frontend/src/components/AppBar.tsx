@@ -22,9 +22,9 @@ export const AppBar = ({ type = "main", onClick, editor }: { type: "main" | "edi
                 : 
                 <div className="flex justify-center">
                     <div className="text-sm font-extralight text-gray-600 mr-4">
-                        Total words: {editor?.storage.characterCount.words()}
+                        {editor?.storage.characterCount.words()} words
                         <br></br>
-                        Total characters: {editor?.storage.characterCount.characters()}
+                        {editor?.storage.characterCount.characters()} characters
                     </div>
                     <Button disabled={editor?.storage.characterCount.words() == 0} onClick={onClick} size="sm" className="flex items-center gap-1 mr-6 rounded-full" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="currentColor" className="size-5">
