@@ -11,6 +11,7 @@ import { useCustomEditor } from "../hooks/Editor";
 export const Create = () => {
   const [title, setTitle] = useState("");
   const [featuredImg, setFeaturedImg] = useState(false);
+  const [url, setUrl] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const navigate = useNavigate();
   const editor = useCustomEditor({ setImages });
@@ -27,6 +28,7 @@ export const Create = () => {
         {
           title: blogTitle,
           blog: blogJSON,
+          featuredImg: url,
           images: images,
           published: true
         },
@@ -50,9 +52,9 @@ export const Create = () => {
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
           <div>
-            <UploadImage open={featuredImg} />
+            <UploadImage open={featuredImg} url={url} setUrl={setUrl} />
           </div>
-          <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
+          {featuredImg ? null : <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
             <div className="flex">
               <div className="flex justify-center flex-col">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
@@ -63,7 +65,7 @@ export const Create = () => {
                 Add featured image
               </div>
             </div>
-          </button>
+          </button>}
           <div>
             <TitleInput setTitle={setTitle} title={title} />
           </div>
