@@ -15,7 +15,7 @@ const lowlight = createLowlight(common);
 export const useCustomEditor = ({setImages}: {setImages: React.Dispatch<React.SetStateAction<string[]>> }) => useEditor({
     extensions: [
         Placeholder.configure({
-            emptyEditorClass: "before:content-[attr(data-placeholder)] before:float-left before:text-[#adb5bd] before:h-0 before:pointer-events-none",
+            // emptyEditorClass: "before:content-[attr(data-placeholder)] before:float-left before:text-[#adb5bd] before:h-0 before:pointer-events-none",
             placeholder: "Start writing here..."
         }),
         StarterKit.configure({
@@ -85,5 +85,4 @@ export const useCustomEditor = ({setImages}: {setImages: React.Dispatch<React.Se
             class: 'prose prose-sm sm:prose-base lg:prose-lg m-5 focus:outline-none'
         }
     }
-
 })

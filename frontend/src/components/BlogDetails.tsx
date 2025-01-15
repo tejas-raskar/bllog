@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Blog } from "../hooks"
-import { BlogReader, CircleSeparator } from "./BlogCard"
+import { CircleSeparator } from "./BlogCard"
 import { ToC } from "./TableOfContents"
 import { EditorContent, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"

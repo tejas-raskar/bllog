@@ -6,7 +6,7 @@ import { TitleInput } from "../components/TitleInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UploadImage } from "../components/UploadImage";
-import { useCustomEditor } from "../components/Editor";
+import { useCustomEditor } from "../hooks/Editor";
 
 export const Create = () => {
   const [title, setTitle] = useState("");
@@ -49,6 +49,9 @@ export const Create = () => {
     <div className="flex justify-center">
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
+          <div>
+            <UploadImage open={featuredImg} />
+          </div>
           <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
             <div className="flex">
               <div className="flex justify-center flex-col">
@@ -61,9 +64,6 @@ export const Create = () => {
               </div>
             </div>
           </button>
-          <div className="absolute">
-            <UploadImage open={featuredImg} />
-          </div>
           <div>
             <TitleInput setTitle={setTitle} title={title} />
           </div>
