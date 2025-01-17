@@ -12,6 +12,7 @@ const MemorizedToC = React.memo(ToC)
 export const BlogDetails = ({ blog }: { blog: Blog }) => {
     const [items, setItems] = useState<TableOfContentData>([])
     const editor = useEditor({
+        editable: false,
         extensions: [
             StarterKit,
             Image,

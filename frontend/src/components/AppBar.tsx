@@ -3,7 +3,7 @@ import { Avatar } from "./BlogCard"
 import { Button } from "@material-tailwind/react"
 import { Editor } from "@tiptap/react"
 
-export const AppBar = ({ type = "main", onClick, editor }: { type: "main" | "editor", onClick?: () => Promise<void>,editor?: Editor }) => {
+export const AppBar = ({ type = "main", onClick, editor, username}: { type: "main" | "editor", onClick?: () => Promise<void>,editor?: Editor, username: string }) => {
     return <div className="flex justify-between border-b px-10 py-4">
         <Link to={'/feed'} className="flex justify-center flex-col text-xl">
             <div>
@@ -36,7 +36,7 @@ export const AppBar = ({ type = "main", onClick, editor }: { type: "main" | "edi
                 </div>
             }
             <div>
-                <Avatar name="Tejas Raskar" size="big" />
+                <Avatar name={username} size="big" />
             </div>
         </div>
     </div>

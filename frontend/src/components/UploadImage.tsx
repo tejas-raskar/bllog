@@ -11,7 +11,7 @@ export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string,
                     <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
                 </svg>
             </button>
-            <img src={url} className="object-cover h-64 w-full"/>
+            <img src={url} className="object-cover h-64 w-full" />
         </div>
     }
     return (open && <div className="flex justify-center my-5 bg-gray-100 min-h-28 rounded-md">
@@ -28,7 +28,7 @@ export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string,
                         className: "min-w-0",
                     }}
                     onPointerEnterCapture
-                    onPointerLeaveCapture 
+                    onPointerLeaveCapture
                     crossOrigin
                 />
                 <Button
@@ -38,7 +38,7 @@ export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string,
                     onClick={() => setSubmitted(true)}
                     className="!absolute right-1 top-1 rounded"
                     placeholder
-                    onPointerEnterCapture 
+                    onPointerEnterCapture
                     onPointerLeaveCapture
                 >
                     Add

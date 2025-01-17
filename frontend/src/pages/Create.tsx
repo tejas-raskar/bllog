@@ -14,7 +14,7 @@ export const Create = () => {
   const [url, setUrl] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const navigate = useNavigate();
-  const editor = useCustomEditor({ setImages });
+  const editor = useCustomEditor({ setImages: setImages, editable: true });
 
   if (!editor) {
     return null
@@ -47,14 +47,14 @@ export const Create = () => {
     }
   }
   return <div>
-    <AppBar type="editor" onClick={publishBlog} editor={editor} />
+    <AppBar type="editor" onClick={publishBlog} editor={editor} username={localStorage.getItem("username") as string} />
     <div className="flex justify-center">
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
           <div>
             <UploadImage open={featuredImg} url={url} setUrl={setUrl} />
           </div>
-          {featuredImg ? null : <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
+          {featuredImg ? url ? null : <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
             <div className="flex">
               <div className="flex justify-center flex-col">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
@@ -62,10 +62,10 @@ export const Create = () => {
                 </svg>
               </div>
               <div className="pl-1 tracking-tighter text-sm text-gray-700">
-                Add featured image
+                {featuredImg ? url ? null :'Remove featured image' : 'Add featured image'}
               </div>
             </div>
-          </button>}
+          </button> : null}
           <div>
             <TitleInput setTitle={setTitle} title={title} />
           </div>

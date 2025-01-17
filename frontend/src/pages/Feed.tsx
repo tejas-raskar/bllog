@@ -12,7 +12,7 @@ export const Feed = () => {
     }
     if (loading) {
         return <div>
-        <AppBar type="main"/>
+        <AppBar type="main" username={localStorage.getItem("username") as string}/>
         <div className="flex justify-center"> 
             <div>
                 <Skeleton type="feed"/>                
@@ -23,7 +23,7 @@ export const Feed = () => {
     </div>
     }
     return <div>
-        <AppBar type="main"/>
+        <AppBar type="main" username={localStorage.getItem("username") as string}/>
         <div className="flex justify-center"> 
             <div>
                 {blogs.map(blog => 
