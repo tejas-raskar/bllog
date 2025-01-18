@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Avatar } from "./BlogCard"
 import { Button } from "@material-tailwind/react"
 import { Editor } from "@tiptap/react"
+import { ProfileMenu } from "./ProfileMenu"
 
 export const AppBar = ({ type = "main", onClick, editor, username}: { type: "main" | "editor", onClick?: () => Promise<void>,editor?: Editor, username: string }) => {
     return <div className="flex justify-between border-b px-10 py-4">
@@ -36,7 +37,10 @@ export const AppBar = ({ type = "main", onClick, editor, username}: { type: "mai
                 </div>
             }
             <div>
-                <Avatar name={username} size="big" />
+                {/* <button onClick={() => <ProfileMenu />}>
+                    <Avatar name={username} size="big" />
+                </button> */}
+                <ProfileMenu username={username}/>
             </div>
         </div>
     </div>

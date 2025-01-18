@@ -5,6 +5,7 @@ import { Signin } from './pages/Signin'
 import { Blog } from './pages/Blog'
 import { Feed } from './pages/Feed'
 import { Create } from './pages/Create'
+import { Profile } from './pages/Profile'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/feed' element={<Feed />} />
           <Route path='/blog/:id' element={<Blog />} />
           <Route path='/create' element={<Create />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </>

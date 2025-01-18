@@ -81,7 +81,6 @@ export function CircleSeparator() {
 }
 
 export function Avatar({name, size}: {name: string, size: "small" | "big"}) {
-    console.log("this is " + name)
     const splitName = name.split(' ');
     const firstName = splitName[0];
     const lastName = splitName[1];
