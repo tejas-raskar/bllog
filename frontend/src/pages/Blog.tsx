@@ -11,7 +11,7 @@ export const Blog = () => {
     });
     if (loading) {
         return <div> 
-        <AppBar type="main" username={localStorage.getItem("name") as string}/>
+        <AppBar type="main" username={localStorage.getItem("username") as string}/>
         <div>
             <Skeleton type="blog" />
         </div>

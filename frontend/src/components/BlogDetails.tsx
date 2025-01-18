@@ -51,9 +51,9 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                 <EditorContent editor={editor} />
             </div>
             <div className="hidden lg:col-span-3 lg:block">
-                <div className="sticky top-0">
+                <div className="sticky top-8">
                     <div className="font-bold text-md my-2">
-                        Table of Contents
+                        On this page
                     </div>
                     <MemorizedToC editor={editor} items={items} />
                 </div>

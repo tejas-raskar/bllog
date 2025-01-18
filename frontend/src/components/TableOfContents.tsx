@@ -16,7 +16,7 @@ interface ToCItemProps {
 
 export const ToCItem: React.FC<ToCItemProps> = ({ item, onItemClick }) => {
     return (
-      <div className={`${item.isActive && !item.isScrolledOver ? 'is-active' : ''} ${item.isScrolledOver ? 'is-scrolled-over' : ''}`} style={{
+      <div className={`${item.isActive ? 'text-black' : 'text-gray-500'} ${item.isScrolledOver ? 'text-black' : ''}`} style={{
         '--level': item.level,
       } as React.CSSProperties}>
         <a href={`#${item.id}`} onClick={e => onItemClick(e, item.id)} data-item-index={item.itemIndex}>{item.textContent}</a>
@@ -26,8 +26,8 @@ export const ToCItem: React.FC<ToCItemProps> = ({ item, onItemClick }) => {
   
   export const ToCEmptyState = () => {
     return (
-      <div className="empty-state">
-        <p>Start editing your document to see the outline.</p>
+      <div className="select-none text-gray-600">
+        <p>Nothing here to show</p>
       </div>
     )
   }
