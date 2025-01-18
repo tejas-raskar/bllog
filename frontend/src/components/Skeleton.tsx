@@ -104,7 +104,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="h1"
-                            className="mb-2 h-7 max-w-lg rounded-full bg-gray-200"
+                            className="mb-2 h-7 max-w-xl rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -114,7 +114,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="h1"
-                            className="h-7 max-w-lg rounded-full bg-gray-200"
+                            className="h-7 max-w-xl rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -122,8 +122,8 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                             &nbsp;
                         </Typography>
                     </div>
-                    <div className="font-medium text-gray-400 pb-6">
-                        <Typography
+                    <div className="flex pb-4">
+                        <span className="font-medium text-gray-600"><Typography
                             as="div"
                             variant="h1"
                             className="h-3 w-32 rounded-full bg-gray-200"
@@ -132,13 +132,25 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                             onPointerLeaveCapture
                         >
                             &nbsp;
-                        </Typography>
+                        </Typography></span>
+                        <div className="flex flex-col justify-center mx-2"><CircleSeparator /></div>
+                        <span className="font-medium text-gray-400"><Typography
+                            as="div"
+                            variant="h1"
+                            className="h-3 w-32 rounded-full bg-gray-200"
+                            placeholder
+                            onPointerEnterCapture
+                            onPointerLeaveCapture
+                        >
+                            &nbsp;
+                        </Typography></span>
                     </div>
+                    
                     <div className="text-base text-gray-700">
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 max-w-xl rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -148,7 +160,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 max-w-xl rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -158,7 +170,7 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         <Typography
                             as="div"
                             variant="paragraph"
-                            className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
+                            className="mb-2 h-2 max-w-xl rounded-full bg-gray-200"
                             placeholder
                             onPointerEnterCapture
                             onPointerLeaveCapture
@@ -167,50 +179,41 @@ export const Skeleton = ({ type }: { type: "feed" | "blog" }) => {
                         </Typography>
                     </div>
                 </div>
-                <div className="hidden lg:col-span-3 lg:block bg-white">
-                    <div className="font-medium text-gray-600 mb-2">
-                        Author
-                    </div>
-                    <div className="flex">
-                        <div className="flex justify-center flex-col pr-4">
-                            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded-full" />
+                <div className="hidden lg:col-span-3 lg:block">
+                    <div className="sticky top-8">
+                        <div className="font-bold text-md my-2">
+                            On this page
                         </div>
-                        <div>
-                            <div className="font-bold text-xl">
-                                <Typography
-                                    as="div"
-                                    variant="h1"
-                                    className="h-3 w-32 rounded-full bg-gray-200"
-                                    placeholder
-                                    onPointerEnterCapture
-                                    onPointerLeaveCapture
-                                >
-                                    &nbsp;
-                                </Typography>
-                            </div>
-                            <div className="font-medium text-gray-400 mt-2">
-                                <Typography
-                                    as="div"
-                                    variant="paragraph"
-                                    className="mb-1 h-2 max-w-md rounded-full bg-gray-200"
-                                    placeholder
-                                    onPointerEnterCapture
-                                    onPointerLeaveCapture
-                                >
-                                    &nbsp;
-                                </Typography>
-                                <Typography
-                                    as="div"
-                                    variant="paragraph"
-                                    className="mb-2 h-2 max-w-md rounded-full bg-gray-200"
-                                    placeholder
-                                    onPointerEnterCapture
-                                    onPointerLeaveCapture
-                                >
-                                    &nbsp;
-                                </Typography>
-                            </div>
-                        </div>
+                        <Typography
+                            as="div"
+                            variant="paragraph"
+                            className="my-2 h-3 max-w-sm rounded-full bg-gray-200"
+                            placeholder
+                            onPointerEnterCapture
+                            onPointerLeaveCapture
+                        >
+                            &nbsp;
+                        </Typography>
+                        <Typography
+                            as="div"
+                            variant="paragraph"
+                            className="my-2 h-3 max-w-sm rounded-full bg-gray-200"
+                            placeholder
+                            onPointerEnterCapture
+                            onPointerLeaveCapture
+                        >
+                            &nbsp;
+                        </Typography>
+                        <Typography
+                            as="div"
+                            variant="paragraph"
+                            className="my-2 h-3 max-w-sm rounded-full bg-gray-200"
+                            placeholder
+                            onPointerEnterCapture
+                            onPointerLeaveCapture
+                        >
+                            &nbsp;
+                        </Typography>
                     </div>
                 </div>
             </div>
