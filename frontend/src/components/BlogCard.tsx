@@ -80,11 +80,11 @@ export function CircleSeparator() {
     </div>
 }
 
-export function Avatar({name, size}: {name: string, size: "small" | "big"}) {
+export function Avatar({name, size}: {name: string, size: "small" | "big" | "xl"}) {
     const splitName = name.split(' ');
     const firstName = splitName[0];
     const lastName = splitName[1];
-    return <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6" : "w-10 h-10"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
+    return <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6" : size == "big" ? "w-10 h-10" : "w-24 h-24"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
         <span className={`font-small ${size === "small" ? "text-xs" : "text-base"} text-gray-600 dark:text-gray-300`}>{firstName[0] + lastName[0]}</span>
     </div>
     

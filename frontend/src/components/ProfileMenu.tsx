@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const ProfileMenu = ({ username }: { username: string }) => {
     const navigate = useNavigate();
     return (
-        <Menu>
+        <Menu placement="bottom-start">
             <MenuHandler>
                 <button>
                     <Avatar name={username} size="big" />
