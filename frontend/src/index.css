@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.caveat-regular {
+  font-family: "Caveat", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 /* Basic editor styles */
 .tiptap {
   :first-child {

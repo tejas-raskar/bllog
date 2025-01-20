@@ -6,6 +6,9 @@ module.exports = withMT({
     "./src/**/*.{js,ts.jsx,tsx}",
   ],
   theme: {
+    fontFamily:{
+      'logo': ['caveat']
+    },
     extend: {},
   },
   plugins: [

@@ -30,16 +30,16 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                         </div>
                     </div>
                 </MenuItem>
-                <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
-                    <button onClick={() => {localStorage.clear(); navigate('/signin')}}>
+                <button onClick={() => { localStorage.clear(); navigate('/signin') }} className="w-full h-max">
+                    <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                         <div className="flex">
                             <LogOut color="#e57373" />
                             <div className="flex flex-col justify-center ml-2 text-red-300">
                                 Log Out
                             </div>
                         </div>
-                    </button>
-                </MenuItem>
+                    </MenuItem>
+                </button>
             </MenuList>
         </Menu>
     );
