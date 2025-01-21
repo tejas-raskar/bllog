@@ -1,4 +1,5 @@
 import { Button, Input } from "@material-tailwind/react";
+import { X } from "lucide-react";
 import { useState } from "react";
 
 export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string, setUrl: React.Dispatch<React.SetStateAction<string>> }) => {
@@ -7,9 +8,9 @@ export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string,
     if (submitted && url) {
         return <div className="max-h-64 overflow-clip rounded-md">
             <button onClick={() => setUrl('')} className="absolute" >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
-                    <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-                </svg>
+                <div className="text-white hover:bg-gray-700 rounded-md m-1">
+                    <X />
+                </div>
             </button>
             <img src={url} className="object-cover h-64 w-full" />
         </div>
