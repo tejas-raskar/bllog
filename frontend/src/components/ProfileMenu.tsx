@@ -12,7 +12,7 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                 </button>
             </MenuHandler>
             <MenuList placeholder onPointerEnterCapture onPointerLeaveCapture>
-                <button onClick={() => navigate(`/profile/${localStorage.getItem("userId")}`)}>
+                <button onClick={() => navigate(`/profile/${localStorage.getItem("userId")}`)} className="w-full h-max">
                     <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                         <div className="flex">
                             <User />
