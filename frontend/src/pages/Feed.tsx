@@ -28,10 +28,10 @@ export const Feed = () => {
             <div>
                 {blogs.map(blog => 
                 <BlogCard 
-                id={blog.id}
-                authorname = {blog.author.name} 
-                title = {blog.title}
-                content= {blog.blog} 
+                id={blog.id || ""}
+                authorname = {blog.author?.name || "Anonymous"}  
+                title = {blog.title || ""} 
+                content= {blog.blog || JSON} 
                 publishedDate="Dec. 26, 2024"/>)}
                 
             </div>

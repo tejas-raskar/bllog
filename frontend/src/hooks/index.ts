@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../config";
 
 export interface Blog {
-    title: string;
-    content: string;
-    blog: JSON;
-    id: string;
-    author: {
+    title?: string;
+    content?: string;
+    blog?: JSON;
+    id?: string;
+    author?: {
         name: string;
     }
 }
@@ -60,5 +60,26 @@ export const useBlogs = () => {
     loading,
     unauthorised,
     blogs
+    }
+}
+
+export const useUserBlogs = ({id}: {id: string}) => {
+    const [drafts, setDrafts] = useState<Blog[]>([]);
+    const [publishedBlogs, setPublishedBlogs] = useState<Blog[]>([]);
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/blog/user/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
+        .then(response => {
+            setDrafts(response.data.drafts);
+            setPublishedBlogs(response.data.publishedBlogs);
+        })
+    }, [])
+    return {
+        drafts,
+        publishedBlogs
     }
 }

@@ -18,6 +18,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             const jwt = response.data.token;
             localStorage.setItem("token", jwt);
             localStorage.setItem("username", response.data.user)
+            localStorage.setItem("userId", response.data.userId)
             navigate("/feed")
         } catch (error) {
             

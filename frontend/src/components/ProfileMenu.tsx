@@ -12,16 +12,16 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                 </button>
             </MenuHandler>
             <MenuList placeholder onPointerEnterCapture onPointerLeaveCapture>
-                <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
-                    <button onClick={() => navigate('/profile')}>
+                <button onClick={() => navigate(`/profile/${localStorage.getItem("userId")}`)}>
+                    <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                         <div className="flex">
                             <User />
                             <div className="flex flex-col justify-center ml-2">
                                 My Profile
                             </div>
                         </div>
-                    </button>
-                </MenuItem>
+                    </MenuItem>
+                </button>
                 <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                     <div className="flex">
                         <Bookmark />
