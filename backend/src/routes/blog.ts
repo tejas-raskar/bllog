@@ -38,6 +38,7 @@ blogRouter.use("/*", async (c, next) => {
 
 blogRouter.post("/", async (c) => {
     const body = await c.req.json();
+    console.log(body)
     // const { success } = createBlogInput.safeParse(body);
     // if (!success) {
     //     c.status(411);
@@ -49,15 +50,18 @@ blogRouter.post("/", async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
-    
+
     try {
         const blog = await prisma.blog.create({
             data: {
                 title: body.title,
                 blog: body.blog,
                 authorId: authorId,
+                featuredImage: body.featuredImage,
                 images: body.images,
-                published: body.published
+                published: body.published,
+                publishedOn: new Date(body.publishedOn),
+                modifiedOn: new Date(body.modifiedOn),
             }
         })
         return c.json({
@@ -140,6 +144,7 @@ blogRouter.get("/bulk", async (c) => {
             title: true,
             blog: true,
             id: true,
+            publishedOn: true,
             author: {
                 select: {
                     name: true
@@ -171,6 +176,7 @@ blogRouter.get("/:id", async (c) => {
                 title: true,
                 content: true,
                 blog: true,
+                publishedOn: true,
                 author: {
                     select: {
                         name: true

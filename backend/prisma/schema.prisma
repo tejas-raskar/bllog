@@ -17,10 +17,12 @@ model User {
 
 model Blog {
   id String @id @default(uuid())
-  title String?
+  title String
   content String?
   blog Json
   published Boolean @default(false)
+  publishedOn DateTime @db.Date
+  modifiedOn DateTime @db.Date
   authorId String
   author User @relation(fields: [authorId], references: [id])
   images String[] @default([])
