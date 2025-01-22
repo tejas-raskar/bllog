@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import { Button } from "@material-tailwind/react"
 import { Editor } from "@tiptap/react"
 import { ProfileMenu } from "./ProfileMenu"
-import { Plus, Upload } from "lucide-react"
+import { Plus, Save, Upload } from "lucide-react"
 
-export const AppBar = ({ type = "main", onClick, editor, username}: { type: "main" | "editor", onClick?: () => Promise<void>,editor?: Editor, username: string }) => {
+export const AppBar = ({ type = "main", publish, save, editor, username}: { type: "main" | "editor", publish?: () => Promise<void>, save?: () => Promise<void>, editor?: Editor, username: string }) => {
     return <div className="flex justify-between border-b px-10 py-3">
         <div className="flex flex-col justify-center">
             <Link to={'/feed'}>
@@ -15,10 +15,10 @@ export const AppBar = ({ type = "main", onClick, editor, username}: { type: "mai
         </div>
         <div className="flex justify-center">
             {type === "main" ? <div className="flex flex-col justify-center"><Link to={'/create'}>
-                <Button size="sm" className="flex items-center md:gap-1 mr-6 rounded-full" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
+                <Button size="sm" className="flex items-center gap-1 mr-6 p-2 lg:p-2.5 rounded-full shadow-none hover:shadow-none border-solid border-2 border-gray-500 hover:border-black" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
                     <Plus />
                     <div className="hidden md:block">
-                        New Post
+                        New Blog
                     </div>
                 </Button>
             </Link>
@@ -30,16 +30,21 @@ export const AppBar = ({ type = "main", onClick, editor, username}: { type: "mai
                         <br></br>
                         {editor?.storage.characterCount.characters()} characters
                     </div>
-                    <Button disabled={editor?.storage.characterCount.words() == 0} onClick={onClick} size="sm" className="flex items-center gap-2 mr-6 rounded-full" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
-                        <Upload size={20}/>
-                        Publish
+                    <Button disabled={editor?.storage.characterCount.words() == 0} onClick={save} size="sm" className="flex items-center gap-2 mr-2 p-3 lg:p-3 rounded-full shadow-none hover:shadow-none bg-white text-black border-solid border-2 border-gray-500 hover:border-black" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
+                        <Save size={20}/>
+                        <div className="hidden lg:block">
+                            Save
+                        </div>
+                    </Button>
+                    <Button disabled={editor?.storage.characterCount.words() == 0} onClick={publish} size="sm" className="flex items-center gap-2 mr-2 p-2 px-3.5 lg:p-3 rounded-full shadow-none hover:shadow-none border-solid border-2 border-gray-500 hover:border-black" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
+                        <Upload size={18}/>
+                        <div className="hidden lg:block">
+                            Publish
+                        </div>
                     </Button>
                 </div>
             }
             <div className="flex flex-col justify-center">
-                {/* <button onClick={() => <ProfileMenu />}>
-                    <Avatar name={username} size="big" />
-                </button> */}
                 <ProfileMenu username={username}/>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { Blog } from './pages/Blog'
 import { Feed } from './pages/Feed'
 import { Create } from './pages/Create'
 import { Profile } from './pages/Profile'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/profile/:id' element={<Profile />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </>
   )
 }
