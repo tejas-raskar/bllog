@@ -31,7 +31,9 @@ export const Create = () => {
           blog: blogJSON,
           featuredImg: url,
           images: images,
-          published: true
+          published: true,
+          publishedOn: new Date().toISOString(),
+          modifiedOn: new Date().toISOString(),
         },
         {
           headers: {

@@ -8,7 +8,7 @@ interface BlogCardProps {
     authorname: string;
     title: string;
     content: JSON;
-    publishedDate: string;
+    publishedOn: Date;
 }
 
 export const BlogCard = ({
@@ -16,7 +16,7 @@ export const BlogCard = ({
     authorname,
     title,
     content,
-    publishedDate
+    publishedOn
 }: BlogCardProps) => {
     return <Link to={`/blog/${id}`}> 
         <div className="p-3 max-w-2xl">
@@ -31,7 +31,7 @@ export const BlogCard = ({
                     <CircleSeparator />
                 </div>
                 <div className="flex justify-center flex-col text-sm font-light text-gray-800">
-                    {publishedDate}
+                    {new Date(publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </div>
             </div>
             <div className="font-extrabold text-2xl">

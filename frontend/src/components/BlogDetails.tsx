@@ -42,9 +42,9 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                         {blog.title}
                     </div>
                     <div className="flex pb-4">
-                        <span className="font-medium text-gray-600">{blog.author.name}</span>
+                        <span className="font-medium text-gray-600">{blog.author?.name}</span>
                         <div className="flex flex-col justify-center mx-2"><CircleSeparator /></div>
-                        <span className="font-medium text-gray-400">Dec. 26, 2024</span>
+                        <span className="font-medium text-gray-400">{new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                     </div>
                 </div>
                 {/* <BlogReader type="full" blogJSON={blog.blog} /> */}

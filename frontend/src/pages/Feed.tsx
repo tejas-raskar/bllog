@@ -32,7 +32,7 @@ export const Feed = () => {
                 authorname = {blog.author?.name || "Anonymous"}  
                 title = {blog.title || ""} 
                 content= {blog.blog || JSON} 
-                publishedDate="Dec. 26, 2024"/>)}
+                publishedOn={blog.publishedOn}/>)}
                 
             </div>
         </div>
