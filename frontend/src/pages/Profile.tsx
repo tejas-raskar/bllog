@@ -13,7 +13,7 @@ export const Profile = () => {
         <AppBar type="main" username={localStorage.getItem("username") as string} />
         <div className="flex justify-center">
             <div className="flex flex-col justify-center">
-                <div className="lg:grid grid-cols-10 w-full max-w-screen-lg">
+                <div className="lg:grid grid-cols-10 w-full max-w-screen-lg mt-16">
                     <div className="col-span-3">
                         <div className="flex flex-col justify-center">
                             <ProfileDetails />
@@ -25,9 +25,14 @@ export const Profile = () => {
                             Drafts
                         </div>
                         <div className={response.drafts.length > 0 ? "" : "text-gray-600 flex justify-center p-8"}>
-                            {response.drafts.length > 0 ?response.drafts.map((draft: any) => (
+                            {response.drafts.length > 0 ? response.drafts.map((draft: any) => (
                                 <Link to={`/blog/${draft.id}`}>
-                                    <ProfileBlogCard title={draft.title} type="draft"/>
+                                    <ProfileBlogCard title={draft.title} date={new Date(draft.modifiedOn).toLocaleDateString(
+                                        'en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric'
+                                    })} type="draft" />
                                 </Link>
                             )) : "No drafts yet!"}
                         </div>
@@ -37,7 +42,12 @@ export const Profile = () => {
                         <div className={response.publishedBlogs.length > 0 ? "" : "text-gray-600 flex justify-center p-8"}>
                             {response.publishedBlogs.length > 0 ? response.publishedBlogs.map((blog: any) => (
                                 <Link to={`/blog/${blog.id}`}>
-                                    <ProfileBlogCard title={blog.title} type="blog" />
+                                    <ProfileBlogCard title={blog.title} date={new Date(blog.publishedOn).toLocaleDateString(
+                                        'en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric'
+                                    })} type="blog" />
                                 </Link>
                             )) : "No blogs published yet!"}
                         </div>

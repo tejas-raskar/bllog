@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Button } from "@material-tailwind/react"
-import { Editor } from "@tiptap/react"
+import { Editor } from "@tiptap/core"
 import { ProfileMenu } from "./ProfileMenu"
 import { Plus, Save, Upload } from "lucide-react"
 

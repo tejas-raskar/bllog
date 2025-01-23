@@ -1,5 +1,5 @@
 import { TextSelection } from '@tiptap/pm/state'
-import { Editor } from '@tiptap/react'
+import { Editor } from '@tiptap/core'
 import React from 'react'
 
 interface ToCItemProps {

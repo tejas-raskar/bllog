@@ -18,7 +18,7 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
             Image,
             TableOfContents.configure({
                 getIndex: getHierarchicalIndexes,
-                onUpdate(content) {
+                onUpdate(content:any) {
                     setItems(content)
                 },
             }),
@@ -44,7 +44,7 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                     <div className="flex pb-4">
                         <span className="font-medium text-gray-600">{blog.author?.name}</span>
                         <div className="flex flex-col justify-center mx-2"><CircleSeparator /></div>
-                        <span className="font-medium text-gray-400">{new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                        <span className="font-medium text-gray-400">{blog.publishedOn != null ? new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ""}</span>
                     </div>
                 </div>
                 {/* <BlogReader type="full" blogJSON={blog.blog} /> */}

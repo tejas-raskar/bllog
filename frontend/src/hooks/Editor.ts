@@ -9,6 +9,7 @@ import FileHandler from "@tiptap-pro/extension-file-handler";
 import Image from "@tiptap/extension-image";
 import { uploadImage } from "../api/Images";
 import { common, createLowlight } from 'lowlight'
+import {Editor} from '@tiptap/core'
 
 const lowlight = createLowlight(common);
 
@@ -33,7 +34,7 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
         Image,
         FileHandler.configure({
             allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
-            onDrop: (currentEditor, files, pos) => {
+            onDrop: (currentEditor:Editor, files:File[], pos:number) => {
                 files.forEach(file => {
                     const fileReader = new FileReader()
                     fileReader.readAsDataURL(file)
@@ -54,7 +55,7 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
                     }
                 })
             },
-            onPaste: (currentEditor, files, htmlContent) => {
+            onPaste: (currentEditor:Editor, files:File[], htmlContent:string) => {
                 files.forEach(file => {
                     if (htmlContent) {
                         console.log(htmlContent)

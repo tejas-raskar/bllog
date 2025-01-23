@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UploadImage } from "../components/UploadImage";
 import { useCustomEditor } from "../hooks/Editor";
 import { Image } from "lucide-react";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const Create = () => {
   const [title, setTitle] = useState("");
