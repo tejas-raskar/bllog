@@ -1,6 +1,7 @@
 import Image from "@tiptap/extension-image";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface BlogCardProps {
@@ -80,12 +81,16 @@ export function CircleSeparator() {
     </div>
 }
 
-export function Avatar({name, size}: {name: string, size: "small" | "big" | "xl"}) {
-    const splitName = name.split(' ');
-    const firstName = splitName[0];
-    const lastName = splitName[1];
+export function Avatar({name, size}: {name?: string, size: "small" | "big" | "xl"}) {
+    let firstName = '';
+    let lastName = '';
+    if(name) {
+        const splitName = name.split(' ');
+        firstName = splitName[0];
+        lastName = splitName[1];
+    }
     return <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6" : size == "big" ? "w-10 h-10" : "w-24 h-24"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
-        <span className={`font-small ${size === "small" ? "text-xs" : "text-base"} text-gray-600 dark:text-gray-300`}>{firstName[0] + lastName[0]}</span>
+        <span className={`font-small ${size === "small" ? "text-xs" : "text-base"} text-gray-600 dark:text-gray-300`}>{name ? firstName[0] + lastName[0] : <User/>}</span>
     </div>
     
 }

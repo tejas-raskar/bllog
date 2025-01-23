@@ -2,8 +2,10 @@ import { Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react"
 import { Avatar } from "./BlogCard";
 import { User, Bookmark, LogOut } from 'lucide-react'
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 export const ProfileMenu = ({ username }: { username: string }) => {
     const navigate = useNavigate();
+    const auth = useAuth();
     return (
         <Menu placement="bottom-start">
             <MenuHandler>
@@ -30,7 +32,7 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                         </div>
                     </div>
                 </MenuItem>
-                <button onClick={() => { localStorage.clear(); navigate('/signin') }} className="w-full h-max">
+                <button onClick={ auth.logout } className="w-full h-max">
                     <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                         <div className="flex">
                             <LogOut color="#e57373" />
