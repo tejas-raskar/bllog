@@ -11,6 +11,31 @@ export const userRouter = new Hono<{
     }
 }>();
 
+userRouter.get("/:id", async (c) => {
+  const id = c.req.param("id");
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL
+  }).$extends(withAccelerate());
+  
+  try {
+    const res = await prisma.user.findUnique({
+      where: {
+        id: id
+      },
+      select: {
+        name: true,
+        tagline: true
+      }
+    })
+
+    return c.json({
+      name: res?.name,
+      tagline: res?.tagline
+    })
+  } catch (error) {
+    
+  }
+})
 
 userRouter.post("/signup", async (c) => {
     const body = await c.req.json();
@@ -36,7 +61,11 @@ userRouter.post("/signup", async (c) => {
       const jwt = await sign({
         id: user.id
       }, c.env.JWT_SECRET)
-      return c.text("Bearer " + jwt);
+      return c.json({
+        token: "Bearer " + jwt,
+        userName: user.name,
+        userId: user.id
+      });
     } catch (e) {
       c.status(411);
       return c.json({
@@ -75,7 +104,7 @@ userRouter.post("/signup", async (c) => {
       const jwt = await sign({id: user.id}, c.env.JWT_SECRET);
       return c.json({
         token: "Bearer " + jwt,
-        user: user.name,
+        userName: user.name,
         userId: user.id
       })
     } catch (error) {

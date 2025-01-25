@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Blog" ALTER COLUMN "modifiedOn" DROP NOT NULL,
+ALTER COLUMN "publishedOn" DROP NOT NULL;

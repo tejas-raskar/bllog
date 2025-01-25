@@ -19,7 +19,7 @@ blogRouter.use("/*", async (c, next) => {
     const token = authHeader.split(' ')[1];
     try {
         const user = await verify(token, c.env.JWT_SECRET);
-        if(user) {
+        if (user) {
             c.set("userId", String(user.id));
             await next();
         } else {
@@ -31,14 +31,13 @@ blogRouter.use("/*", async (c, next) => {
     } catch (e) {
         c.status(403);
         return c.json({
-                message: "You are not logged in!"
+            message: "You are not logged in!"
         })
     }
 })
 
 blogRouter.post("/", async (c) => {
     const body = await c.req.json();
-    console.log(body)
     // const { success } = createBlogInput.safeParse(body);
     // if (!success) {
     //     c.status(411);
@@ -60,7 +59,7 @@ blogRouter.post("/", async (c) => {
                 featuredImage: body.featuredImage,
                 images: body.images,
                 published: body.published,
-                publishedOn: new Date(body.publishedOn),
+                publishedOn: body.published ? new Date(body.publishedOn) : null,
                 modifiedOn: new Date(body.modifiedOn),
             }
         })
@@ -74,31 +73,38 @@ blogRouter.post("/", async (c) => {
     }
 })
 
-blogRouter.put("/", async (c) => {
+blogRouter.put("/:id", async (c) => {
     const body = await c.req.json();
-    const { success } = updateBlogInput.safeParse(body);
-    if (!success) {
-        c.status(411);
-        return c.json({
-        message: "Incorrect inputs"
-        })
-    }
+    const { id } = c.req.param();
+    // const { success } = updateBlogInput.safeParse(body);
+    // if (!success) {
+    //     c.status(411);
+    //     return c.json({
+    //     message: "Incorrect inputs"
+    //     })
+    // }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
 
     const blog = await prisma.blog.update({
         where: {
-            id: body.id
+            id: id
         },
         data: {
             title: body.title,
-            content: body.content
+            blog: body.blog,
+            featuredImage: body.featuredImage,
+            images: body.images,
+            published: body.published,
+            publishedOn: body.published ? new Date(body.publishedOn) : null,
+            modifiedOn: new Date(body.modifiedOn),
         }
     })
 
     return c.json({
-        id: blog.id
+        id: blog.id,
+        modifiedOn: blog.modifiedOn
     })
 })
 
@@ -111,6 +117,7 @@ blogRouter.get("/user/:id", async (c) => {
     const drafts = await prisma.blog.findMany({
         select: {
             title: true,
+            modifiedOn: true,
             id: true
         },
         where: {
@@ -122,6 +129,7 @@ blogRouter.get("/user/:id", async (c) => {
     const publishedBlogs = await prisma.blog.findMany({
         select: {
             title: true,
+            publishedOn: true,
             id: true
         },
         where: {
@@ -145,6 +153,7 @@ blogRouter.get("/bulk", async (c) => {
             blog: true,
             id: true,
             publishedOn: true,
+            featuredImage: true,
             author: {
                 select: {
                     name: true
@@ -165,7 +174,7 @@ blogRouter.get("/:id", async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
-    
+
     try {
         const blog = await prisma.blog.findFirst({
             where: {
@@ -177,6 +186,7 @@ blogRouter.get("/:id", async (c) => {
                 content: true,
                 blog: true,
                 publishedOn: true,
+                featuredImage: true,
                 author: {
                     select: {
                         name: true

@@ -12,6 +12,7 @@ model User {
   username String @unique
   password String
   name String?
+  tagline String?
   blogs Blog[]
 }
 
@@ -21,8 +22,8 @@ model Blog {
   content String?
   blog Json
   published Boolean @default(false)
-  publishedOn DateTime @db.Date
-  modifiedOn DateTime @db.Date
+  publishedOn DateTime? @db.Date
+  modifiedOn DateTime? @db.Date
   authorId String
   author User @relation(fields: [authorId], references: [id])
   images String[] @default([])
