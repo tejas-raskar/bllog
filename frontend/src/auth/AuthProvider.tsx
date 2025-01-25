@@ -7,6 +7,7 @@ import { SignupInput } from "@traskar/bllog-common";
 interface AuthContextType {
     token: string;
     userId: string;
+    userName: string;
     authenticate: (data: SignupInput, type: "signin" | "signup") => Promise<void>;
     logout: () => void;
 }
@@ -14,12 +15,14 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>({
     token: '',
     userId: '',
+    userName: '',
     authenticate: async () => {},
     logout: () => {}
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [userId, setUserId] = useState('');
+    const [userName, setUserName] = useState('');
     const [token, setToken] = useState(localStorage.getItem("token") || "");
     const navigate = useNavigate();
 
@@ -28,8 +31,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             const res = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, payload);
             if(res.data) {
                 setUserId(res.data.userId);
+                setUserName(res.data.userName);
                 setToken(res.data.token);
                 localStorage.setItem("token", res.data.token);
+                localStorage.setItem("userID", res.data.userId);
+                localStorage.setItem("userName", res.data.userName);
                 navigate('/feed');
                 return;
             }
@@ -46,7 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         navigate('/signin');
     };
 
-    return <AuthContext.Provider value={{ token, userId, authenticate, logout }}>
+    return <AuthContext.Provider value={{ token, userId, userName, authenticate, logout }}>
         {children}
     </AuthContext.Provider>
 }

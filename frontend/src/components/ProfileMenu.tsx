@@ -14,7 +14,7 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                 </button>
             </MenuHandler>
             <MenuList placeholder onPointerEnterCapture onPointerLeaveCapture>
-                <button onClick={() => navigate(`/profile/${auth.userId}`)} className="w-full h-max focus:outline-none">
+                <button onClick={() => navigate(`/profile/${localStorage.getItem("userID")}`)} className="w-full h-max focus:outline-none">
                     <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
                         <div className="flex">
                             <User />

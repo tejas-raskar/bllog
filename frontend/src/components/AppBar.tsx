@@ -4,7 +4,7 @@ import { Editor } from "@tiptap/core"
 import { ProfileMenu } from "./ProfileMenu"
 import { Plus, Save, Upload } from "lucide-react"
 
-export const AppBar = ({ type = "main", publish, save, editor, username}: { type: "main" | "editor", publish?: () => Promise<void>, save?: () => Promise<void>, editor?: Editor, username: string }) => {
+export const AppBar = ({ type = "main", publish, save, editor }: { type: "main" | "editor", publish?: () => Promise<void>, save?: () => Promise<void>, editor?: Editor }) => {
     return <div className="flex justify-between border-b px-10 py-3">
         <div className="flex flex-col justify-center">
             <Link to={'/feed'}>
@@ -45,7 +45,7 @@ export const AppBar = ({ type = "main", publish, save, editor, username}: { type
                 </div>
             }
             <div className="flex flex-col justify-center">
-                <ProfileMenu username={username}/>
+                <ProfileMenu username={localStorage.getItem("userName") as string}/>
             </div>
         </div>
     </div>

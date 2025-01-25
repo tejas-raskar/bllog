@@ -118,7 +118,7 @@ export const Create = () => {
   };
 
   return <div>
-    <AppBar type="editor" publish={handlePublish} save={handleSave} editor={editor} username={localStorage.getItem("username") as string} />
+    <AppBar type="editor" publish={handlePublish} save={handleSave} editor={editor} />
     <div className="flex justify-center">
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
