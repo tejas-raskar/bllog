@@ -8,6 +8,7 @@ export interface Blog {
     blog?: JSON;
     id?: string;
     publishedOn: Date;
+    featuredImage?: string;
     author?: {
         name: string;
     }

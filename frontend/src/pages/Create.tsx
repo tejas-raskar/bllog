@@ -13,7 +13,7 @@ import toast from 'react-hot-toast';
 export const Create = () => {
   const [title, setTitle] = useState("");
   const [featuredImg, setFeaturedImg] = useState(false);
-  const [url, setUrl] = useState("");
+  const [featuredImgUrl, setFeaturedImgUrl] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const [blogId, setBlogId] = useState("");
   const navigate = useNavigate();
@@ -24,26 +24,26 @@ export const Create = () => {
   }
   async function saveBlog() {
     if (!editor) return
-    const url = `${BACKEND_URL}/api/v1/blog`
     const blogJSON = editor.getJSON();
     const blogTitle = title;
     const data = {
       title: blogTitle,
       blog: blogJSON,
-      featuredImg: url,
+      featuredImage: featuredImgUrl,
       images: images,
       published: false,
       modifiedOn: new Date().toISOString(),
     }
+    console.log(featuredImgUrl)
     try {
-      const res = blogId ? await axios.put(`${url}/${blogId}`, data,
+      const res = blogId ? await axios.put(`${BACKEND_URL}/api/v1/blog/${blogId}`, data,
         {
           headers: {
             Authorization: localStorage.getItem("token")
           }
         }
       )
-        : await axios.post(url, data,
+        : await axios.post(`${BACKEND_URL}/api/v1/blog`, data,
           {
             headers: {
               Authorization: localStorage.getItem("token")
@@ -63,23 +63,29 @@ export const Create = () => {
     if (!editor) return
     const blogJSON = editor.getJSON();
     const blogTitle = title;
+    const data = {
+      title: blogTitle,
+      blog: blogJSON,
+      featuredImage: featuredImgUrl,
+      images: images,
+      published: true,
+      publishedOn: new Date().toISOString(),
+      modifiedOn: new Date().toISOString(),
+    }
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/v1/blog`,
-        {
-          title: blogTitle,
-          blog: blogJSON,
-          featuredImg: url,
-          images: images,
-          published: true,
-          publishedOn: new Date().toISOString(),
-          modifiedOn: new Date().toISOString(),
-        },
+      const res = blogId ? await axios.put(`${BACKEND_URL}/api/v1/blog/${blogId}`, data,
         {
           headers: {
             Authorization: localStorage.getItem("token")
           }
-        }
-      )
+        }) : await axios.post(`${BACKEND_URL}/api/v1/blog`,
+          data,
+          {
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+          }
+        )
 
       if (res.status == 200) {
         navigate(`/blog/${res.data.id}`)
@@ -117,9 +123,9 @@ export const Create = () => {
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
           <div>
-            <UploadImage open={featuredImg} url={url} setUrl={setUrl} />
+            <UploadImage open={featuredImg} url={featuredImgUrl} setUrl={setFeaturedImgUrl} />
           </div>
-          {!featuredImg || !url ? (
+          {!featuredImg || !featuredImgUrl ? (
             <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">
               <div className="flex">
                 <div className="flex justify-center flex-col">

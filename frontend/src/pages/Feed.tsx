@@ -32,8 +32,8 @@ export const Feed = () => {
                 authorname = {blog.author?.name || "Anonymous"}  
                 title = {blog.title || ""} 
                 content= {blog.blog || JSON} 
-                publishedOn={blog.publishedOn}/>)}
-                
+                publishedOn={blog.publishedOn}
+                featuredImage={blog.featuredImage}/>)}                
             </div>
         </div>
     </div>
