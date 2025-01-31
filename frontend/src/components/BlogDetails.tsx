@@ -38,9 +38,9 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
         <div className="grid grid-cols-12 px-10 lg:px-20 pt-10 w-full max-w-screen-xl">
             <div className="col-span-12 lg:col-span-9">
                 <div className="mx-5">
-                    <div className="max-h-64 overflow-clip rounded-md mb-4">
+                    {blog.featuredImage ? <div className="max-h-64 overflow-clip rounded-md mb-4">
                         <img src={blog.featuredImage} className="object-cover h-64 w-full"  />
-                    </div>
+                    </div> : null}
                     <div className="text-4xl font-extrabold mb-3">
                         {blog.title}
                     </div>

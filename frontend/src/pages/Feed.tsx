@@ -25,7 +25,7 @@ export const Feed = () => {
     return <div>
         <AppBar type="main" />
         <div className="flex justify-center"> 
-            <div>
+            <div className="mt-2">
                 {blogs.map(blog => 
                 <BlogCard 
                 id={blog.id || ""}

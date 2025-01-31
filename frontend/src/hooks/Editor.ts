@@ -13,7 +13,7 @@ import {Editor} from '@tiptap/core'
 
 const lowlight = createLowlight(common);
 
-export const useCustomEditor = ({setImages, editable=false}: {setImages: React.Dispatch<React.SetStateAction<string[]>>, editable: boolean }) => useEditor({
+export const useCustomEditor = ({setImages, editable=false}: {setImages: React.Dispatch<React.SetStateAction<string[]>>, editable: boolean}) => useEditor({
     extensions: [
         Placeholder.configure({
             // emptyEditorClass: "before:content-[attr(data-placeholder)] before:float-left before:text-[#adb5bd] before:h-0 before:pointer-events-none",
@@ -55,7 +55,7 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
                     }
                 })
             },
-            onPaste: (currentEditor:Editor, files:File[], htmlContent:string) => {
+            onPaste: (currentEditor:Editor, files:File[], htmlContent?:string) => {
                 files.forEach(file => {
                     if (htmlContent) {
                         console.log(htmlContent)

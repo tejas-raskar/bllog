@@ -3,21 +3,48 @@ import { Tiptap } from "../components/TipTap"
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { TitleInput } from "../components/TitleInput";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { UploadImage } from "../components/UploadImage";
 import { useCustomEditor } from "../hooks/Editor";
 import { Image } from "lucide-react";
 import toast from 'react-hot-toast';
+import { useBlog } from "../hooks";
+import { Skeleton } from "../components/Skeleton";
 
 export const Create = () => {
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [featuredImg, setFeaturedImg] = useState(false);
   const [featuredImgUrl, setFeaturedImgUrl] = useState("");
   const [images, setImages] = useState<string[]>([]);
-  const [blogId, setBlogId] = useState("");
+  const [blogId, setBlogId] = useState(id || "");
   const navigate = useNavigate();
+  const { loading, blog } = useBlog({ id: id as string });
   const editor = useCustomEditor({ setImages: setImages, editable: true });
+
+  useEffect(() => {
+    if (blog?.published) {
+      navigate(`/blog/${blog.id}`)
+    } else {
+      if (blog) {
+        if (blog.blog) {
+          setTitle(blog.title as string);
+          setFeaturedImgUrl(blog.featuredImage as string);
+          editor?.commands.setContent(blog.blog);
+        }
+      }
+    }
+  }, [blog])
+
+  if (loading) {
+    return <div>
+      <AppBar type="main" />
+      <div>
+        <Skeleton type="blog" />
+      </div>
+    </div>
+  }
 
   if (!editor) {
     return null
@@ -34,7 +61,6 @@ export const Create = () => {
       published: false,
       modifiedOn: new Date().toISOString(),
     }
-    console.log(featuredImgUrl)
     try {
       const res = blogId ? await axios.put(`${BACKEND_URL}/api/v1/blog/${blogId}`, data,
         {
@@ -123,7 +149,7 @@ export const Create = () => {
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">
           <div>
-            <UploadImage open={featuredImg} url={featuredImgUrl} setUrl={setFeaturedImgUrl} />
+            <UploadImage open={featuredImgUrl ? !featuredImg : featuredImg} url={featuredImgUrl} setUrl={setFeaturedImgUrl} fetchedImg={true} />
           </div>
           {!featuredImg || !featuredImgUrl ? (
             <button onClick={() => setFeaturedImg(!featuredImg)} className="ml-4 p-1 rounded-md hover:bg-gray-200">

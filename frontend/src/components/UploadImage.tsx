@@ -2,8 +2,8 @@ import { Button, Input } from "@material-tailwind/react";
 import { X } from "lucide-react";
 import { useState } from "react";
 
-export const UploadImage = ({ open, url, setUrl }: { open: boolean, url: string, setUrl: React.Dispatch<React.SetStateAction<string>> }) => {
-    const [submitted, setSubmitted] = useState(false);
+export const UploadImage = ({ open, url, setUrl, fetchedImg=false }: { open: boolean, url: string, setUrl: React.Dispatch<React.SetStateAction<string>>, fetchedImg?: boolean}) => {
+    const [submitted, setSubmitted] = useState(fetchedImg);
     const onChange = ({ target }: { target: any }) => setUrl(target.value);
     if (submitted && url) {
         return <div className="max-h-64 overflow-clip rounded-md">

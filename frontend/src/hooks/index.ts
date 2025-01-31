@@ -7,6 +7,7 @@ export interface Blog {
     content?: string;
     blog?: JSON;
     id?: string;
+    published?: boolean;
     publishedOn: Date;
     featuredImage?: string;
     author?: {

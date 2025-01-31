@@ -41,7 +41,7 @@ export const Profile = () => {
                             </div>
                             <div className={response.drafts.length > 0 ? "" : "text-gray-600 flex justify-center p-8"}>
                                 {response.drafts.length > 0 ? response.drafts.map((draft: any) => (
-                                    <Link to={`/blog/${draft.id}`}>
+                                    <Link to={`/create/${draft.id}`}>
                                         <ProfileBlogCard title={draft.title} date={new Date(draft.modifiedOn).toLocaleDateString(
                                             'en-US', {
                                             year: 'numeric',
@@ -49,7 +49,7 @@ export const Profile = () => {
                                             day: 'numeric'
                                         })} type="draft" />
                                     </Link>
-                                )) : "No drafts yet!"}
+                                )) : "No drafts"}
                             </div>
                         </div>
                         <hr className="lg:hidden my-4" />
@@ -67,7 +67,7 @@ export const Profile = () => {
                                             day: 'numeric'
                                         })} type="blog" />
                                     </Link>
-                                )) : "No blogs published yet!"}
+                                )) : "No published blogs"}
                             </div>
                         </div>
                     </div>

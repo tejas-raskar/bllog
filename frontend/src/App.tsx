@@ -26,7 +26,7 @@ function App() {
               <Route path='/blog/:id' element={<Blog />} />
             </Route>
             <Route element={<PrivateRoute />}>
-              <Route path='/create' element={<Create />} />
+              <Route path='/create/:id?' element={<Create />} />
             </Route>
             <Route element={<PrivateRoute />}>
               <Route path='/profile/:id' element={<Profile />} />

@@ -21,8 +21,8 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [userId, setUserId] = useState('');
-    const [userName, setUserName] = useState('');
+    const [userId, setUserId] = useState(localStorage.getItem("userID") || '');
+    const [userName, setUserName] = useState(localStorage.getItem("userName") || '');
     const [token, setToken] = useState(localStorage.getItem("token") || "");
     const navigate = useNavigate();
 
@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const logout = () => {
         setUserId("");
         setToken("");
+        setUserName("");
         localStorage.clear();
         navigate('/signin');
     };
