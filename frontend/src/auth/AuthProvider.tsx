@@ -49,7 +49,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUserId("");
         setToken("");
         setUserName("");
-        localStorage.clear();
+        localStorage.removeItem("userID");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
         navigate('/signin');
     };
 

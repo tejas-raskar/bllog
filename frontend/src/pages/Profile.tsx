@@ -6,6 +6,7 @@ import { ProfileBlogCard } from "../components/ProfileBlogCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { Notebook, NotebookPen } from "lucide-react";
 
 export const Profile = () => {
     const { id } = useParams();
@@ -36,10 +37,10 @@ export const Profile = () => {
                     <hr className="my-4" />
                     <div className="lg:grid grid-cols-4 max-w-4xl mt-8">
                         <div className="col-span-2 mx-6">
-                            <div className="text-xl font-bold mt-4 mb-4">
+                            <div className="text-xl font-bold mb-4">
                                 Drafts
                             </div>
-                            <div className={response.drafts.length > 0 ? "" : "text-gray-600 flex justify-center p-8"}>
+                            <div className={response.drafts.length > 0 ? "" : "text-gray-500 flex justify-center p-8"}>
                                 {response.drafts.length > 0 ? response.drafts.map((draft: any) => (
                                     <Link to={`/create/${draft.id}`}>
                                         <ProfileBlogCard title={draft.title} date={new Date(draft.modifiedOn).toLocaleDateString(
@@ -49,7 +50,14 @@ export const Profile = () => {
                                             day: 'numeric'
                                         })} type="draft" />
                                     </Link>
-                                )) : "No drafts"}
+                                )) : <div className="flex flex-col items-center">
+                                    <div className="mr-2">
+                                        <NotebookPen size={32} />
+                                    </div>
+                                    <div className="text-lg">
+                                        No drafts
+                                    </div>
+                                </div>}
                             </div>
                         </div>
                         <hr className="lg:hidden my-4" />
@@ -57,7 +65,7 @@ export const Profile = () => {
                             <div className="text-xl font-bold mb-4">
                                 Published Blogs
                             </div>
-                            <div className={response.publishedBlogs.length > 0 ? "" : "text-gray-600 flex justify-center p-8"}>
+                            <div className={response.publishedBlogs.length > 0 ? "" : "text-gray-500 flex justify-center p-8"}>
                                 {response.publishedBlogs.length > 0 ? response.publishedBlogs.map((blog: any) => (
                                     <Link to={`/blog/${blog.id}`}>
                                         <ProfileBlogCard title={blog.title} date={new Date(blog.publishedOn).toLocaleDateString(
@@ -67,7 +75,14 @@ export const Profile = () => {
                                             day: 'numeric'
                                         })} type="blog" />
                                     </Link>
-                                )) : "No published blogs"}
+                                )) : <div className="flex flex-col items-center">
+                                    <div className="mr-2">
+                                        <Notebook size={32} />
+                                    </div>
+                                    <div className="text-lg">
+                                        No published blogs
+                                    </div>
+                                </div>}
                             </div>
                         </div>
                     </div>

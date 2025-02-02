@@ -37,7 +37,7 @@ export const Create = () => {
     }
   }, [blog])
 
-  if (loading) {
+  if (loading && id) {
     return <div>
       <AppBar type="main" />
       <div>

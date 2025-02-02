@@ -14,17 +14,15 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                 </button>
             </MenuHandler>
             <MenuList placeholder onPointerEnterCapture onPointerLeaveCapture>
-                <button onClick={() => navigate(`/profile/${localStorage.getItem("userID")}`)} className="w-full h-max focus:outline-none">
-                    <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
-                        <div className="flex">
-                            <User />
-                            <div className="flex flex-col justify-center ml-2">
-                                My Profile
-                            </div>
+                <MenuItem onClick={() => navigate(`/profile/${localStorage.getItem("userID")}`)} placeholder onPointerEnterCapture onPointerLeaveCapture>
+                    <div className="flex">
+                        <User />
+                        <div className="flex flex-col justify-center ml-2">
+                            My Profile
                         </div>
-                    </MenuItem>
-                </button>
-                <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
+                    </div>
+                </MenuItem>
+                <MenuItem onClick={() => navigate("/bookmarks")} placeholder onPointerEnterCapture onPointerLeaveCapture>
                     <div className="flex">
                         <Bookmark />
                         <div className="flex flex-col justify-center ml-2">
@@ -32,16 +30,14 @@ export const ProfileMenu = ({ username }: { username: string }) => {
                         </div>
                     </div>
                 </MenuItem>
-                <button onClick={ auth.logout } className="w-full h-max focus:outline-none">
-                    <MenuItem placeholder onPointerEnterCapture onPointerLeaveCapture>
-                        <div className="flex">
-                            <LogOut color="#e57373" />
-                            <div className="flex flex-col justify-center ml-2 text-red-300">
-                                Log Out
-                            </div>
+                <MenuItem onClick={auth.logout} placeholder onPointerEnterCapture onPointerLeaveCapture>
+                    <div className="flex">
+                        <LogOut color="#e57373" />
+                        <div className="flex flex-col justify-center ml-2 text-red-300">
+                            Log Out
                         </div>
-                    </MenuItem>
-                </button>
+                    </div>
+                </MenuItem>
             </MenuList>
         </Menu>
     );

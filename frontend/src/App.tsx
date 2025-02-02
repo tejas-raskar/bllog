@@ -9,6 +9,7 @@ import { Profile } from './pages/Profile'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './auth/AuthProvider'
 import { PrivateRoute } from './auth/PrivateRoute'
+import { Bookmarks } from './pages/Bookmarks'
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route element={<PrivateRoute />}>
               <Route path='/profile/:id' element={<Profile />} />
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route path='/bookmarks' element={<Bookmarks />} />
             </Route>
           </Routes>
         </AuthProvider>
