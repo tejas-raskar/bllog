@@ -13,6 +13,7 @@ model User {
   password String
   name String?
   tagline String?
+  bookmarks String[] @default([])
   blogs Blog[]
 }
 

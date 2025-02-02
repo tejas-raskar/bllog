@@ -76,6 +76,7 @@ blogRouter.post("/", async (c) => {
 blogRouter.put("/:id", async (c) => {
     const body = await c.req.json();
     const { id } = c.req.param();
+    const userId = c.get("userId");
     // const { success } = updateBlogInput.safeParse(body);
     // if (!success) {
     //     c.status(411);
@@ -86,8 +87,14 @@ blogRouter.put("/:id", async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
-
-    const blog = await prisma.blog.update({
+    const blog = await prisma.blog.findUnique({where: {id}}) 
+    if(!blog || blog.authorId !== userId) {
+        c.status(403);
+        return c.json({
+            message: "Unauthorized"
+        });
+    }
+    const updatedBlog = await prisma.blog.update({
         where: {
             id: id
         },
@@ -103,8 +110,8 @@ blogRouter.put("/:id", async (c) => {
     })
 
     return c.json({
-        id: blog.id,
-        modifiedOn: blog.modifiedOn
+        id: updatedBlog.id,
+        modifiedOn: updatedBlog.modifiedOn
     })
 })
 
@@ -185,11 +192,14 @@ blogRouter.get("/:id", async (c) => {
                 title: true,
                 content: true,
                 blog: true,
+                published: true,
                 publishedOn: true,
                 featuredImage: true,
+                images: true,
                 author: {
                     select: {
-                        name: true
+                        name: true,
+                        id: true
                     }
                 }
             }
