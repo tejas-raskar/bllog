@@ -8,7 +8,7 @@ export const AppBar = ({ type = "main", publish, save, editor }: { type: "main" 
     return <div className="flex justify-between border-b px-10 py-3">
         <div className="flex flex-col justify-center">
             <Link to={'/feed'}>
-                <div className="font-logo text-5xl lg:ml-5">
+                <div className="font-logo text-5xl lg:ml-3">
                     Bllog
                 </div>
             </Link>
