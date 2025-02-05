@@ -9,11 +9,11 @@ import FileHandler from "@tiptap-pro/extension-file-handler";
 import Image from "@tiptap/extension-image";
 import { uploadImage } from "../api/Images";
 import { common, createLowlight } from 'lowlight'
-import {Editor} from '@tiptap/core'
+import { Editor } from '@tiptap/core'
 
 const lowlight = createLowlight(common);
 
-export const useCustomEditor = ({setImages, editable=false}: {setImages: React.Dispatch<React.SetStateAction<string[]>>, editable: boolean}) => useEditor({
+export const useCustomEditor = ({ setImages, editable = false }: { setImages: React.Dispatch<React.SetStateAction<string[]>>, editable: boolean }) => useEditor({
     extensions: [
         Placeholder.configure({
             // emptyEditorClass: "before:content-[attr(data-placeholder)] before:float-left before:text-[#adb5bd] before:h-0 before:pointer-events-none",
@@ -34,8 +34,14 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
         Image,
         FileHandler.configure({
             allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
-            onDrop: (currentEditor:Editor, files:File[], pos:number) => {
+            onDrop: (currentEditor: Editor, files: File[], pos: number) => {
                 files.forEach(file => {
+                    currentEditor.chain().insertContentAt(pos, {
+                        type: 'image',
+                        attrs: {
+                            src: '/assets/loading.gif',
+                        }
+                    }).run();
                     const fileReader = new FileReader()
                     fileReader.readAsDataURL(file)
                     fileReader.onload = async () => {
@@ -43,25 +49,32 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
                         if (response) {
                             setImages((images: string[]) => [...images, response.$id]);
                             const imageUrl = `${import.meta.env.VITE_ENDPOINT}/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${import.meta.env.VITE_PROJECT_ID}`
+                            currentEditor.commands.updateAttributes(
+                                'image',
+                                { src: imageUrl },
+                            );
                             currentEditor.chain().insertContentAt(pos, {
-                                type: 'image',
-                                attrs: {
-                                    src: imageUrl,
-                                },
-                            }).focus().run()
+                                type: 'paragraph',
+                                content: []
+                            }).run();
                         } else {
                             console.log("Error uploading image.")
                         }
                     }
                 })
             },
-            onPaste: (currentEditor:Editor, files:File[], htmlContent?:string) => {
+            onPaste: (currentEditor: Editor, files: File[], htmlContent?: string) => {
                 files.forEach(file => {
                     if (htmlContent) {
                         console.log(htmlContent)
                         return false
                     }
-
+                    currentEditor.chain().insertContentAt(currentEditor.state.selection.anchor, {
+                        type: 'image',
+                        attrs: {
+                            src: '/assets/loading.gif',
+                        }
+                    }).run();
                     const fileReader = new FileReader()
                     fileReader.readAsDataURL(file)
                     fileReader.onload = async () => {
@@ -69,12 +82,14 @@ export const useCustomEditor = ({setImages, editable=false}: {setImages: React.D
                         if (response) {
                             setImages(images => [...images, response.$id]);
                             const imageUrl = `${import.meta.env.VITE_ENDPOINT}/storage/buckets/${response.bucketId}/files/${response.$id}/preview?project=${import.meta.env.VITE_PROJECT_ID}`
+                            currentEditor.commands.updateAttributes(
+                                'image',
+                                { src: imageUrl },
+                            );
                             currentEditor.chain().insertContentAt(currentEditor.state.selection.anchor, {
-                                type: 'image',
-                                attrs: {
-                                    src: imageUrl,
-                                },
-                            }).focus().run()
+                                type: 'paragraph',
+                                content: []
+                            }).run();
                         }
                     }
                 })

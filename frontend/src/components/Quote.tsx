@@ -1,4 +1,4 @@
-import image from '../assets/editor.png'
+import image from '/assets/editor.png'
 
 export const Quote = () => {
     return (
@@ -6,7 +6,7 @@ export const Quote = () => {
             <div className="bg-[#e5e5e5] h-full flex justify-center flex-col rounded-xl m-3 overflow-hidden relative">
                 <div className='absolute top-16 left-24 text-balance p-4 ml-2'>
                     <div className='mb-2 text-3xl/9 font-semibold '>
-                        Frictionless Writing with Powerful Editing Suite
+                        Frictionless <span className='font-logo text-4xl font-bold'>Writing,</span> Powerful Editing Suite
                     </div>
                     <div className="text-gray-700 font-extralight">
                         Enter your credentials to start blloging!
