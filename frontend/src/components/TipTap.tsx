@@ -10,22 +10,22 @@ export const Tiptap = ({ editor }: { editor: Editor }) => {
       <BubbleMenu editor={editor}>
         <div className='bg-white border flex justify-center border-gray-400 rounded-md divide-x divide-gray-200 shadow-sm p-1'>
           <button onClick={() => editor.chain().focus().toggleMark('bold').run()} className={`${editor.isActive('bold') ? 'bg-gray-200 hover:bg-gray-300' : ''}flex flex-col justify-center p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <Bold size={22}/>
+            <Bold size={18}/>
           </button>
           <button onClick={() => editor.chain().focus().toggleMark('italic').run()} className={`${editor.isActive('italic') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <Italic size={22}/>
+            <Italic size={18}/>
           </button>
           <button onClick={() => editor.chain().focus().toggleUnderline().run()} className={`${editor.isActive('underline') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <Underline size={22}/>
+            <Underline size={18}/>
           </button>
           <button onClick={() => editor.chain().focus().toggleMark('strike').run()} className={`${editor.isActive('strike') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <Strikethrough size={22}/>
+            <Strikethrough size={18}/>
           </button>
           <button onClick={() => editor.chain().focus().toggleList('bulletList', 'listItem').run()} className={`${editor.isActive('listItem') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <List size={22}/>
+            <List size={18}/>
           </button>
           <button onClick={() => editor.chain().focus().toggleMark('code').run()} className={`${editor.isActive('code') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
-            <Code size={22}/>
+            <Code size={18}/>
           </button>
         </div>
       </BubbleMenu>

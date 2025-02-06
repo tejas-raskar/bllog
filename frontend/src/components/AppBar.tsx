@@ -5,10 +5,10 @@ import { ProfileMenu } from "./ProfileMenu"
 import { Plus, Save, Upload } from "lucide-react"
 
 export const AppBar = ({ type = "main", publish, save, editor }: { type: "main" | "editor", publish?: () => Promise<void>, save?: () => Promise<void>, editor?: Editor }) => {
-    return <div className="flex justify-between border-b px-10 py-3">
+    return <div className="flex justify-between border-b px-10 py-3 max-w-6xl mx-auto">
         <div className="flex flex-col justify-center">
             <Link to={'/feed'}>
-                <div className="font-logo text-5xl lg:ml-3">
+                <div className="font-logo text-5xl">
                     Bllog
                 </div>
             </Link>

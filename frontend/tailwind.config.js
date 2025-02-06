@@ -7,7 +7,9 @@ module.exports = withMT({
   ],
   theme: {
     fontFamily:{
-      'logo': ['caveat']
+      'logo': ['caveat'],
+      'headline': ['Bricolage Grotesque'],
+      'subtitle': ['Hanken Grotesk']
     },
     extend: {},
   },

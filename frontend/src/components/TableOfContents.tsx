@@ -1,6 +1,7 @@
 import { TextSelection } from '@tiptap/pm/state'
 import { Editor } from '@tiptap/core'
 import React from 'react'
+import { Dot } from 'lucide-react';
 
 interface ToCItemProps {
   item: {
@@ -16,10 +17,10 @@ interface ToCItemProps {
 
 export const ToCItem: React.FC<ToCItemProps> = ({ item, onItemClick }) => {
     return (
-      <div className={`${item.isActive ? 'text-black' : 'text-gray-500'} ${item.isScrolledOver ? 'text-black' : ''}`} style={{
+      <div className={`${item.isActive ? 'text-black' : 'text-gray-500'} ${item.isScrolledOver ? 'text-black' : ''} my-1`} style={{
         paddingLeft: `calc(0.875rem * ${item.level})`,
       }}>
-        <a href={`#${item.id}`} onClick={e => onItemClick(e, item.id)} data-item-index={item.itemIndex}>{item.textContent}</a>
+        <a href={`#${item.id}`} onClick={e => onItemClick(e, item.id)} data-item-index={item.itemIndex}><div className='flex font-subtitle'><Dot />{item.textContent}</div></a>
       </div>
     )
   }

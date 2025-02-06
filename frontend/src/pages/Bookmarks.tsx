@@ -11,7 +11,7 @@ export const Bookmarks = () => {
                 <AppBar type="main" />
                 <div className="flex justify-center">
                     <div>
-                        <div className="text-center font-bold text-2xl my-4">
+                        <div className="text-center font-headline font-bold text-3xl my-4">
                             Bookmarks
                         </div>
                         <hr />
@@ -31,7 +31,7 @@ export const Bookmarks = () => {
             <AppBar type="main" />
             <div className="flex justify-center">
                 <div>
-                    <div className="text-center font-bold text-2xl my-4">
+                    <div className="text-center font-headline font-bold text-3xl my-4">
                         Bookmarks
                     </div>
                     <hr />

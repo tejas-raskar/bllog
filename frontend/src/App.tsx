@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './auth/AuthProvider'
 import { PrivateRoute } from './auth/PrivateRoute'
 import { Bookmarks } from './pages/Bookmarks'
+import { Landing } from './pages/Landing'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
+            <Route path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Signin />} />
             <Route element={<PrivateRoute />}>

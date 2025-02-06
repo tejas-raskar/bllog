@@ -9,7 +9,7 @@ export const ProfileMenu = ({ username }: { username: string }) => {
     return (
         <Menu placement="bottom-start">
             <MenuHandler>
-                <button>
+                <button className="bg-black rounded-full text-black">
                     <Avatar name={username} size="big" />
                 </button>
             </MenuHandler>

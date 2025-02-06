@@ -42,22 +42,22 @@ export const BlogCard = ({
                         <div>
                             <Avatar name={authorname} size="small" />
                         </div>
-                        <div className="flex justify-center flex-col pl-2 text-sm">
+                        <div className="flex justify-center flex-col pl-2 font-subtitle text-sm">
                             {authorname}
                         </div>
                         <div className="flex justify-center flex-col px-2">
                             <CircleSeparator />
                         </div>
-                        <div className="flex justify-center flex-col text-sm font-light text-gray-800">
+                        <div className="flex justify-center flex-col text-sm font-subtitle font-light text-gray-800">
                             {new Date(publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                         </div>
                     </div>
                     <div className="flex justify-between">
                         <div>
-                            <div className="font-extrabold text-2xl">
+                            <div className="font-extrabold font-headline text-2xl">
                                 {title}
                             </div>
-                            <div className="text-slate-600 font-medium py-2">
+                            <div className="text-gray-800 font-subtitle font-normal py-2 pr-8 text-left text-pretty">
                                 <BlogReader type="mini" blogJSON={content} />
                             </div>
                         </div>
@@ -73,10 +73,10 @@ export const BlogCard = ({
             {onToggleBookmark && isBookmarked !== undefined && (
                 <button
                     onClick={toggleBookmark}
-                    className="absolute top-2 right-2 p-1 bg-white rounded-full hover:bg-gray-100"
+                    className="absolute top-2 right-2 p-1 bg-white rounded-full hover:bg-gray-100 hover:text-black"
                     aria-label="Toggle Bookmark"
                 >
-                    {isBookmarked ? <BookmarkCheck size={20} /> : <Bookmark className="text-gray-400 hover:text-black" size={20} />}
+                    {isBookmarked ? <BookmarkCheck className="text-[#FF8C4B]" size={20} /> : <Bookmark className="" size={20} />}
                 </button>
             )}
         </div>
@@ -129,8 +129,8 @@ export function Avatar({ name, size }: { name?: string, size: "small" | "big" | 
         lastName = splitName[1] || "";
     }
     return (
-        <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6" : size === "big" ? "w-10 h-10" : "w-24 h-24"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
-            <span className={`font-small ${size === "small" ? "text-xs" : "text-base"} text-gray-600 dark:text-gray-300`}>
+        <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-6 h-6 bg-[#BEA1FA]" : size === "big" ? "w-10 h-10" : "w-24 h-24 bg-gray-100"} overflow-hidden rounded-full`}>
+            <span className={`font-small ${size === "small" ? "text-xs text-black" : size === "big" ? "text-base text-[#BEA1FA]": "text-base text-gray-600"}  dark:text-gray-300`}>
                 {name ? firstName[0] + (lastName ? lastName[0] : "") : <User />}
             </span>
         </div>

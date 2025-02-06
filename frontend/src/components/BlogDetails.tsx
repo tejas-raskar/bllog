@@ -41,21 +41,21 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                     {blog.featuredImage ? <div className="max-h-64 overflow-clip rounded-md mb-4">
                         <img src={blog.featuredImage} className="object-cover h-64 w-full"  />
                     </div> : null}
-                    <div className="text-4xl font-extrabold mb-3">
+                    <div className="text-4xl font-headline font-extrabold mb-3">
                         {blog.title}
                     </div>
                     <div className="flex pb-4">
-                        <span className="font-medium text-gray-600">{blog.author?.name}</span>
+                        <span className="font-medium font-subtitle text-[#FF8C4B]">{blog.author?.name}</span>
                         <div className="flex flex-col justify-center mx-2"><CircleSeparator /></div>
-                        <span className="font-medium text-gray-400">{blog.publishedOn != null ? new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ""}</span>
+                        <span className="font-medium font-subtitle text-[#BEA1FA]">{blog.publishedOn != null ? new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ""}</span>
                     </div>
                 </div>
                 {/* <BlogReader type="full" blogJSON={blog.blog} /> */}
                 <EditorContent editor={editor} />
             </div>
             <div className="hidden lg:col-span-3 lg:block">
-                <div className="sticky top-8">
-                    <div className="font-bold text-md my-2">
+                <div className="ml-10 sticky top-8">
+                    <div className="font-bold font-headline text-md my-2">
                         On this page
                     </div>
                     <MemorizedToC editor={editor} items={items} />
