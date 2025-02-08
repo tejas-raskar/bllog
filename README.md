@@ -2,7 +2,7 @@
 
 Bllog is a sleek, modern bllogging platform that lets you focus on what matters: your story. Ditch the complexity and create stunning content in minutes.
 
-## ✨ Features That Rock
+## ✨ Features
 
 *   **Rich Text Editor:**
     *   Markdown & WYSIWYG: Your choice.
@@ -19,7 +19,6 @@ Bllog is a sleek, modern bllogging platform that lets you focus on what matters:
 
 *   **Frontend:** React, TypeScript, Material Tailwind
 *   **Backend:** Hono, Prisma, Cloudflare Workers
-*   **Common:** Zod
 *   **Editor:** Tiptap
 
 ## 🚀 Get Started
@@ -30,7 +29,7 @@ Bllog is a sleek, modern bllogging platform that lets you focus on what matters:
 cd frontend
 npm install
 npm run dev
-
+```
 ### Backend
 
 ```bash
@@ -39,6 +38,6 @@ npm install
 # Set up .env (DATABASE_URL, JWT_SECRET)
 npm run dev
 # To deploy: `npm run deploy`
-
+```
 ## 📝 License
 This project is licensed under the MIT License.
