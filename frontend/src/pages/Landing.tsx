@@ -1,8 +1,56 @@
 import { Bookmark, FilePenLine, Github, Heart, MonitorSmartphone, MousePointer2, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
+import { motion } from "framer-motion";
 
 export const Landing = () => {
     const navigate = useNavigate();
+
+    const fadeInUp = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: {
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1]
+        }
+    };
+
+    const fadeInUpDelayed = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: {
+            duration: 0.8,
+            delay: 0.5,
+            ease: [0.22, 1, 0.36, 1]
+        }
+    };
+
+    const imageSlideUp = {
+        initial: { opacity: 0, y: 100 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: {
+            duration: 1.2,
+            delay: 0.5,
+            ease: [0.22, 1, 0.36, 1]
+        }
+    };
+
+    const staggerChildren = {
+        initial: { opacity: 0 },
+        whileInView: { opacity: 1 },
+        viewport: { once: true, margin: "-100px" },
+        transition: { staggerChildren: 0.2 }
+    };
+
+    const cardHoverAnimation = {
+        whileHover: { 
+            y: -5,
+            transition: { duration: 0.2 }
+        }
+    };
+
     return <div>
         <div className="px-5 pt-5 fixed top-0 w-full z-50">
             <div className="rounded-full max-w-xl lg:max-w-5xl mx-auto border-2 backdrop-blur-lg shadow-sm">
@@ -35,7 +83,7 @@ export const Landing = () => {
         </div>
         <div className="flex justify-center mt-36 p-10">
             <div className="flex flex-col items-center">
-                <div className="max-w-3xl">
+                <motion.div className="max-w-3xl" {...fadeInUp}>
                     <div className="mx-auto font-headline text-5xl md:text-6xl text-balance max-w-xl text-center leading-tight font-semibold">
                         Effortlessly publish bllogs in{" "}
                         <span className="relative inline-block highlight">
@@ -45,19 +93,19 @@ export const Landing = () => {
                     <div className="mt-4 text-center text-xl text-balance font-subtitle font-light">
                         Start blogging without the hassle. Focus on your story, not the setup.
                     </div>
-                    <div className="flex justify-center mt-6">
-                        <button onClick={() => navigate('/signup')} className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold">
+                    <motion.div className="flex justify-center mt-6" {...fadeInUpDelayed}>
+                        <button onClick={() => navigate('/signup')} className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/20">
                             Get started
                         </button>
-                        <button onClick={() => navigate('/try-editor')} className="mx-2 border-2 border-[#BEA1FA] hover:bg-[#BEA1FA] rounded-full px-4 py-3  text-lg font-subtitle font-semibold">
+                        <button onClick={() => navigate('/try-editor')} className="mx-2 hover:bg-[#BEA1FA] border-2 bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/20">
                             Try Editor
                         </button>
-                    </div>
-                </div>
-                <div>
+                    </motion.div>
+                </motion.div>
+                <motion.div {...imageSlideUp}>
                     <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" />
-                </div>
-                <div className="max-w-5xl w-full bg-gray-50 rounded-xl p-2 pb-4">
+                </motion.div>
+                <motion.div className="max-w-5xl w-full bg-gray-50 rounded-xl p-2 pb-4" {...fadeInUpDelayed}>
                     <div className="bg-[#FF8C4B] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
                         <div className="flex justify-center gap-2">
                             <FilePenLine size={16} className="my-auto" />
@@ -72,14 +120,14 @@ export const Landing = () => {
                     <div className="font-subtitle text-lg text-center">
                         We're not responsible for sudden fame
                     </div>
-                    <div className="grid grid-cols-12 mt-4">
+                    <motion.div className="grid grid-cols-12 mt-4" variants={staggerChildren} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-100px" }}>
                         <div className="p-4 col-span-12">
                             <video src="/assets/editor_vid.mp4" controls className="rounded-xl w-full">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 px-4 col-span-12 gap-4">
-                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8 pb-0">
                                     <div className="font-headline font-bold text-balance text-xl text-left pb-2">
                                         Markdown editor
@@ -91,9 +139,9 @@ export const Landing = () => {
                                 <div className="overflow-hidden h-48 relative">
                                     <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-fullhover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8 pb-0">
                                     <div className="font-headline font-bold text-xl text-left pb-2">
                                         Table of Contents
@@ -105,9 +153,9 @@ export const Landing = () => {
                                 <div className="overflow-hidden h-48 relative">
                                     <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110  translate-y-6 w-[90%] object-cover" />
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-fullhover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8 pb-0">
                                     <div className="font-headline font-bold text-xl text-left pb-2">
                                         Advanced blocks
@@ -119,11 +167,11 @@ export const Landing = () => {
                                 <div className="overflow-hidden h-48 relative">
                                     <img src="/assets/adv_blocks.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
-                    </div>
-                </div>
-                <div className="max-w-5xl w-full bg-gray-100 rounded-xl p-2 pb-4 mt-20">
+                    </motion.div>
+                </motion.div>
+                <motion.div className="max-w-5xl w-full bg-gray-100 rounded-xl p-2 pb-4 mt-20" {...fadeInUp}>
                     <div className="bg-[#BEA1FA] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
                         <div className="flex justify-center gap-2">
                             <Sparkles size={16} className="my-auto" />
@@ -145,7 +193,7 @@ export const Landing = () => {
                             </video>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 px-4 col-span-12 gap-4">
-                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#BEA1FA] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8">
                                     <MousePointer2 className="mb-2" />
                                     <div className="font-headline font-bold text-balance text-xl text-left pb-2">
@@ -155,9 +203,9 @@ export const Landing = () => {
                                         Just drag, drop, and boom! Your images are live.
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#BEA1FA] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8">
                                     <Bookmark className="mb-2" />
                                     <div className="font-headline font-bold text-xl text-left pb-2">
@@ -167,9 +215,9 @@ export const Landing = () => {
                                         Save your spot, pick up where you left off. Magic!
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                            <motion.div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#BEA1FA] transition-all" {...cardHoverAnimation}>
                                 <div className="p-8">
                                     <MonitorSmartphone className="mb-2" />
                                     <div className="font-headline font-bold text-xl text-left pb-2">
@@ -179,11 +227,11 @@ export const Landing = () => {
                                         Write from anywhere, your words follow you everywhere
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div {...fadeInUp}>
                     <div className="max-w-5xl w-full rounded-xl p-8 mt-28 text-center">
                         <div className="font-headline font-bold text-4xl">
                             Ready to unleash your inner wordsmith?
@@ -195,7 +243,7 @@ export const Landing = () => {
                             Sign Up - It's Free!
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
         <div className="w-full bg-gray-50/50 backdrop-blur-sm border-t border-gray-100 mt-28">
