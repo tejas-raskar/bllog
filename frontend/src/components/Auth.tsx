@@ -2,6 +2,8 @@ import { SignupInput } from "@traskar/bllog-common";
 import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth";
+import { toast } from "sonner";
+import { SHA256 } from "crypto-js";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     const [postInputs, setPostInputs] = useState<SignupInput>({
@@ -10,6 +12,23 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         name: ""
     });
     const auth = useAuth();
+
+    const handleSubmit = () => {
+        const hashedPassword = SHA256(postInputs.password).toString();
+        const secureInputs = {
+            ...postInputs,
+            password: hashedPassword
+        };
+
+        toast.promise(
+            auth.authenticate(secureInputs, type),
+            {
+                loading: type === "signup" ? 'Creating account...' : 'Signing in...',
+                success: type === "signup" ? 'Account created successfully!' : 'Signed in successfully!',
+                error: (err) => err?.message || 'Something went wrong!'
+            }
+        );
+    };
 
     return <div className="h-screen">
         <div className="absolute font-logo text-5xl ml-3 px-10 py-3">
@@ -45,7 +64,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                             password: e.target.value
                         })
                     }} />
-                    <button onClick={() => auth.authenticate(postInputs, type)} type="button" className="mt-6 w-full text-white bg-[#000000] hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup" ? "Sign up" : "Sign in"}</button>
+                    <button onClick={handleSubmit} type="button" className="mt-6 w-full text-white bg-[#000000] hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup" ? "Sign up" : "Sign in"}</button>
                 </div>
             </div>
         </div>

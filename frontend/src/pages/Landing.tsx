@@ -1,4 +1,4 @@
-import { Bookmark, FilePenLine, MonitorSmartphone, MousePointer2, Sparkles } from "lucide-react";
+import { Bookmark, FilePenLine, Github, Heart, MonitorSmartphone, MousePointer2, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
 
 export const Landing = () => {
@@ -14,10 +14,21 @@ export const Landing = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className="my-auto">
-                        <button onClick={() => navigate('/signin')} className="border-2 rounded-full px-4 py-2 shadow-sm">
-                            Sign in
-                        </button>
+                    <div className="flex">
+                        <a href="https://github.com/tejas-raskar/bllog  "
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mr-2 hover:text-gray-900 transition-colors flex items-center gap-1">
+                            <Github size={18} />
+                        </a>
+                        <div className="my-auto">
+                            <button onClick={() => navigate('/signin')} className="mr-2 border-2 rounded-full px-4 py-2 shadow-sm">
+                                Log in
+                            </button>
+                            <button onClick={() => navigate('/signup')} className="border-2 rounded-full px-4 py-2 shadow-sm bg-[#BEA1FA]">
+                                Sign up
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,7 +46,7 @@ export const Landing = () => {
                         Start blogging without the hassle. Focus on your story, not the setup.
                     </div>
                     <div className="flex justify-center mt-6">
-                        <button className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold">
+                        <button onClick={() => navigate('/signup')} className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold">
                             Get started
                         </button>
                         <button className="mx-2 border-2 border-[#BEA1FA] hover:bg-[#BEA1FA] rounded-full px-4 py-3  text-lg font-subtitle font-semibold">
@@ -46,7 +57,7 @@ export const Landing = () => {
                 <div>
                     <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" />
                 </div>
-                <div className="max-w-5xl w-full bg-gray-50 rounded-xl p-2 ">
+                <div className="max-w-5xl w-full bg-gray-50 rounded-xl p-2 pb-4">
                     <div className="bg-[#FF8C4B] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
                         <div className="flex justify-center gap-2">
                             <FilePenLine size={16} className="my-auto" />
@@ -112,7 +123,7 @@ export const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-5xl w-full bg-white rounded-xl p-2 mt-20">
+                <div className="max-w-5xl w-full bg-gray-100 rounded-xl p-2 pb-4 mt-20">
                     <div className="bg-[#BEA1FA] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
                         <div className="flex justify-center gap-2">
                             <Sparkles size={16} className="my-auto" />
@@ -165,20 +176,32 @@ export const Landing = () => {
                                         Sync Everywhere
                                     </div>
                                     <div className="font-subtitle text-lg text-gray-800">
-                                        Write from anywhere, your words follow you everywhere   
+                                        Write from anywhere, your words follow you everywhere
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div className="max-w-5xl w-full rounded-xl p-8 mt-28 text-center">
+                        <div className="font-headline font-bold text-4xl">
+                            Ready to unleash your inner wordsmith?
+                        </div>
+                        <div className="font-subtitle text-lg mt-4">
+                            Stop waiting, start writing. Your audience awaits!
+                        </div>
+                        <button onClick={() => navigate('/signup')} className="mt-6 bg-[#BEA1FA] font-bold rounded-full px-8 py-3 text-lg hover:bg-[#a87cff]">
+                            Sign Up - It's Free!
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div>
-            Rich Text Editor
-            Drag drop
-            bookmarks
-            cta
+        <div className="w-full bg-gray-50/50 backdrop-blur-sm border-t border-gray-100 mt-28">
+            <div className="flex justify-center gap-2 py-3 text-gray-600">
+                Made with <Heart size={18} className="my-auto hover:text-red-500 transition-colors" /> from Earth!
+            </div>
         </div>
     </div>
 }
