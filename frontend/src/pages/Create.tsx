@@ -4,7 +4,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { TitleInput } from "../components/TitleInput";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UploadImage } from "../components/UploadImage";
 import { useCustomEditor } from "../hooks/Editor";
 import { Image } from "lucide-react";
@@ -14,6 +14,8 @@ import { Skeleton } from "../components/Skeleton";
 
 export const Create = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const isTryEditor = location.pathname === '/try-editor'; 
   const [title, setTitle] = useState("");
   const [featuredImg, setFeaturedImg] = useState(false);
   const [featuredImgUrl, setFeaturedImgUrl] = useState("");
@@ -144,7 +146,7 @@ export const Create = () => {
   };
 
   return <div>
-    <AppBar type="editor" publish={handlePublish} save={handleSave} editor={editor} />
+    <AppBar type="editor" publish={isTryEditor ? undefined : handlePublish} save={isTryEditor ? undefined : handleSave} editor={editor} />
     <div className="flex justify-center">
       <div className="flex justify-center flex-col p-2 mt-6">
         <div className="max-w-3xl">

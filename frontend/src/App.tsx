@@ -22,6 +22,7 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Signin />} />
+            <Route path='/try-editor' element={<Create />} />
             <Route element={<PrivateRoute />}>
               <Route path='/feed' element={<Feed />} />
             </Route>

@@ -49,7 +49,7 @@ export const Landing = () => {
                         <button onClick={() => navigate('/signup')} className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold">
                             Get started
                         </button>
-                        <button className="mx-2 border-2 border-[#BEA1FA] hover:bg-[#BEA1FA] rounded-full px-4 py-3  text-lg font-subtitle font-semibold">
+                        <button onClick={() => navigate('/try-editor')} className="mx-2 border-2 border-[#BEA1FA] hover:bg-[#BEA1FA] rounded-full px-4 py-3  text-lg font-subtitle font-semibold">
                             Try Editor
                         </button>
                     </div>
