@@ -46,8 +46,8 @@ export const Landing = () => {
                 <div>
                     <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" />
                 </div>
-                <div className="max-w-5xl w-full bg-gray-100 rounded-xl p-2">
-                    <div className="bg-gray-400 rounded-full w-fit py-1 px-2 mx-auto">
+                <div className="max-w-5xl w-full bg-gray-50 rounded-xl p-2 ">
+                    <div className="bg-[#FF8C4B] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
                         <div className="flex justify-center gap-2">
                             <FilePenLine size={16} className="my-auto" />
                             <div className="text-sm font-subtitle">
@@ -55,16 +55,65 @@ export const Landing = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="font-headline font-bold text-2xl text-center mt-4">
-                        Simple Yet Powerful Editor
+                    <div className="font-headline font-bold text-3xl text-center mt-4">
+                        So Easy, It's Scary
                     </div>
-                    <div className="font-subtitle text-base text-center">
-                        Powerful doesn't always have to be complicated
+                    <div className="font-subtitle text-lg text-center">
+                        (We're not responsible for sudden fame.)
+                    </div>
+                    <div className="grid grid-cols-12 mt-4">
+                        <div className="p-4 col-span-12">
+                            <video src="/assets/editor_vid.mp4" controls className="rounded-xl w-full">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 px-4 col-span-12 gap-4">
+                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8 pb-0">
+                                    <div className="font-headline font-bold text-balance text-xl text-left pb-2">
+                                        Markdown editor
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        Markdown for pros, or WYSIWYG for the rest of us!
+                                    </div>
+                                </div>
+                                <div className="overflow-hidden h-48 relative">
+                                    <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8 pb-0">
+                                    <div className="font-headline font-bold text-xl text-left pb-2">
+                                        Table of Contents
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        Click to jump to a section. Updates automatically
+                                    </div>
+                                </div>
+                                <div className="overflow-hidden h-48 relative">
+                                    <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110  translate-y-6 w-[90%] object-cover" />
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8 pb-0">
+                                    <div className="font-headline font-bold text-xl text-left pb-2">
+                                        Advanced blocks
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        All the fancy blocks you crave, without the headache
+                                    </div>
+                                </div>
+                                <div className="overflow-hidden h-48 relative">
+                                    <img src="/assets/adv_blocks.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div>
             Rich Text Editor
             Drag drop
