@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config";
 import { SignupInput } from "@traskar/bllog-common";
 
 interface AuthContextType {
@@ -28,7 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const authenticate = async (payload: SignupInput, type: "signin" | "signup") => {
         try {
-            const res = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, payload);
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, payload);
             if(res.data) {
                 setUserId(res.data.userId);
                 setUserName(res.data.userName);
@@ -52,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem("userID");
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
-        navigate('/signin');
+        navigate('/');
     };
 
     return <AuthContext.Provider value={{ token, userId, userName, authenticate, logout }}>

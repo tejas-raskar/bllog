@@ -5,7 +5,6 @@ import { useUserBlogs } from "../hooks";
 import { ProfileBlogCard } from "../components/ProfileBlogCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { Notebook, NotebookPen } from "lucide-react";
 
 export const Profile = () => {
@@ -18,7 +17,7 @@ export const Profile = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const user = await axios.get(`${BACKEND_URL}/api/v1/user/${id}`)
+            const user = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${id}`)
             setName(user.data.name);
             setTagline(user.data.tagline);
         }

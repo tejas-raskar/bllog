@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { AppBar } from "../components/AppBar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
@@ -16,7 +15,7 @@ export const Feed = () => {
     useEffect(() => {
         const fetchBookmarks = async () => {
             try {
-                const res = await axios.get(`${BACKEND_URL}/api/v1/user/bookmarks`, {
+                const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/bookmarks`, {
                     headers: {
                         Authorization: localStorage.getItem("token") || ""
                     }
@@ -40,7 +39,7 @@ export const Feed = () => {
             }
             const userId = localStorage.getItem("userID");
             const promise = axios.post(
-                `${BACKEND_URL}/api/v1/user/bookmarks`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/bookmarks`,
                 { id: userId, bookmarks: updatedBookmarks },
                 { headers: { Authorization: localStorage.getItem("token") || "" } }
             );

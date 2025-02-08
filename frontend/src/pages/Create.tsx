@@ -1,7 +1,6 @@
 import { AppBar } from "../components/AppBar"
 import { Tiptap } from "../components/TipTap"
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { TitleInput } from "../components/TitleInput";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -64,14 +63,14 @@ export const Create = () => {
       modifiedOn: new Date().toISOString(),
     }
     try {
-      const res = blogId ? await axios.put(`${BACKEND_URL}/api/v1/blog/${blogId}`, data,
+      const res = blogId ? await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${blogId}`, data,
         {
           headers: {
             Authorization: localStorage.getItem("token")
           }
         }
       )
-        : await axios.post(`${BACKEND_URL}/api/v1/blog`, data,
+        : await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog`, data,
           {
             headers: {
               Authorization: localStorage.getItem("token")
@@ -101,12 +100,12 @@ export const Create = () => {
       modifiedOn: new Date().toISOString(),
     }
     try {
-      const res = blogId ? await axios.put(`${BACKEND_URL}/api/v1/blog/${blogId}`, data,
+      const res = blogId ? await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${blogId}`, data,
         {
           headers: {
             Authorization: localStorage.getItem("token")
           }
-        }) : await axios.post(`${BACKEND_URL}/api/v1/blog`,
+        }) : await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog`,
           data,
           {
             headers: {

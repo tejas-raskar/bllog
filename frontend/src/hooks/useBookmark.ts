@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../config";
 import { Blog } from ".";
 
 export const useBookmarks = () => {
@@ -8,7 +7,7 @@ export const useBookmarks = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/user/bookmarks`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/bookmarks`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -17,7 +16,7 @@ export const useBookmarks = () => {
             const bookmarkIds: string[] = response.data.bookmarks.bookmarks;
             Promise.all(
                 bookmarkIds.map((id: string) =>
-                    axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+                    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`, {
                         headers: {
                             Authorization: localStorage.getItem("token")
                         }

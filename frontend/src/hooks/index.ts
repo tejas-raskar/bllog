@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { BACKEND_URL } from "../config";
 
 export interface Blog {
     title?: string;
@@ -20,7 +19,7 @@ export const useBlog = ({ id } : { id: string }) => {
     const [blog, setBlog] = useState<Blog>();
     
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -42,7 +41,7 @@ export const useBlogs = () => {
     const [unauthorised, setUnauthorised] = useState(false);
     const [blogs, setBlogs] = useState<Blog[]>([]);
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/bulk`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -71,7 +70,7 @@ export const useUserBlogs = ({id}: {id: string}) => {
     const [publishedBlogs, setPublishedBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/user/${id}`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/user/${id}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
