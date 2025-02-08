@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UploadImage } from "../components/UploadImage";
 import { useCustomEditor } from "../hooks/Editor";
 import { Image } from "lucide-react";
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import { useBlog } from "../hooks";
 import { Skeleton } from "../components/Skeleton";
 
@@ -122,7 +122,7 @@ export const Create = () => {
   }
 
   const handleSave = async () => {
-    return toast.promise(
+    await toast.promise(
       saveBlog(),
       {
         loading: 'Saving...',
@@ -133,7 +133,7 @@ export const Create = () => {
   };
 
   const handlePublish = async () => {
-    return toast.promise(
+    await toast.promise(
       publishBlog(),
       {
         loading: 'Publishing...',

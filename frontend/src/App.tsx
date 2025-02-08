@@ -6,7 +6,7 @@ import { Blog } from './pages/Blog'
 import { Feed } from './pages/Feed'
 import { Create } from './pages/Create'
 import { Profile } from './pages/Profile'
-import { Toaster } from 'react-hot-toast'
+import { Toaster } from 'sonner'
 import { AuthProvider } from './auth/AuthProvider'
 import { PrivateRoute } from './auth/PrivateRoute'
 import { Bookmarks } from './pages/Bookmarks'
@@ -40,7 +40,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-      <Toaster />
+      <Toaster position="top-center" />
     </>
   )
 }

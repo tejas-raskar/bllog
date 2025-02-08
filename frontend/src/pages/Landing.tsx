@@ -1,4 +1,4 @@
-import { FilePenLine } from "lucide-react";
+import { Bookmark, FilePenLine, MonitorSmartphone, MousePointer2, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
 
 export const Landing = () => {
@@ -59,7 +59,7 @@ export const Landing = () => {
                         So Easy, It's Scary
                     </div>
                     <div className="font-subtitle text-lg text-center">
-                        (We're not responsible for sudden fame.)
+                        We're not responsible for sudden fame
                     </div>
                     <div className="grid grid-cols-12 mt-4">
                         <div className="p-4 col-span-12">
@@ -107,6 +107,66 @@ export const Landing = () => {
                                 </div>
                                 <div className="overflow-hidden h-48 relative">
                                     <img src="/assets/adv_blocks.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-5xl w-full bg-white rounded-xl p-2 mt-20">
+                    <div className="bg-[#BEA1FA] font-bold rounded-full w-fit py-1 px-2 mt-4 mx-auto">
+                        <div className="flex justify-center gap-2">
+                            <Sparkles size={16} className="my-auto" />
+                            <div className="text-sm font-subtitle">
+                                The Conveniences
+                            </div>
+                        </div>
+                    </div>
+                    <div className="font-headline font-bold text-3xl text-center mt-4">
+                        Because Life's Too Short
+                    </div>
+                    <div className="font-subtitle text-lg text-center">
+                        For complicated stuff, that is
+                    </div>
+                    <div className="grid grid-cols-12 mt-4">
+                        <div className="p-4 col-span-12">
+                            <video src="/assets/convenience_vid.mp4" controls className="rounded-xl w-full">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 px-4 col-span-12 gap-4">
+                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8">
+                                    <MousePointer2 className="mb-2" />
+                                    <div className="font-headline font-bold text-balance text-xl text-left pb-2">
+                                        Drag & Drop Images
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        Just drag, drop, and boom! Your images are live.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-1 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8">
+                                    <Bookmark className="mb-2" />
+                                    <div className="font-headline font-bold text-xl text-left pb-2">
+                                        Smart Bookmarks
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        Save your spot, pick up where you left off. Magic!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-2 lg:col-span-4 bg-gray-200 overflow-clip ring-1 ring-gray-300 rounded-xl h-full">
+                                <div className="p-8">
+                                    <MonitorSmartphone className="mb-2" />
+                                    <div className="font-headline font-bold text-xl text-left pb-2">
+                                        Sync Everywhere
+                                    </div>
+                                    <div className="font-subtitle text-lg text-gray-800">
+                                        Write from anywhere, your words follow you everywhere   
+                                    </div>
                                 </div>
                             </div>
                         </div>

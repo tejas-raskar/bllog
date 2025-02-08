@@ -6,7 +6,7 @@ import { AppBar } from "../components/AppBar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
 import { Skeleton } from "../components/Skeleton";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export const Feed = () => {
     const { loading, unauthorised, blogs } = useBlogs();
