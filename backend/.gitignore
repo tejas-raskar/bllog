@@ -19,7 +19,7 @@ node_modules/
 .env
 .env.production
 .dev.vars
-wrangler.toml
+wrangler.jsonc
 # logs
 logs/
 *.log
