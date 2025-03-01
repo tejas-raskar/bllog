@@ -165,7 +165,7 @@ export const Create = () => {
             </button>
           ) : null}
           <div>
-            <TitleInput setTitle={setTitle} title={title} />
+            <TitleInput setTitle={setTitle} title={title} editor={editor}/>
           </div>
         </div>
         <div className="max-w-3xl">

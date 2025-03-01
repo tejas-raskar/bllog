@@ -1,9 +1,13 @@
 import { EditorContent, BubbleMenu, FloatingMenu } from '@tiptap/react'
 import { Editor } from '@tiptap/core'
 import { FloatingMenuItem } from './FloatingMenuItem';
-import { Bold, Code, Code2, Heading1, Heading2, Heading3, Italic, List, ListOrdered, MessageCircle, Minus, Strikethrough,Underline } from 'lucide-react';
+import { Bold, Code, Code2, Heading1, Heading2, Heading3, Italic, List, ListOrdered, MessageCircle, Minus, Sparkle, Strikethrough, Underline } from 'lucide-react';
+import { useState } from 'react';
+import { AIContextMenu } from './AIContextMenu';
 
 export const Tiptap = ({ editor }: { editor: Editor }) => {
+  const [showAIMenu, setShowAIMenu] = useState(false);
+  
   if (!editor) return;
   return (
     <>
@@ -27,8 +31,25 @@ export const Tiptap = ({ editor }: { editor: Editor }) => {
           <button onClick={() => editor.chain().focus().toggleMark('code').run()} className={`${editor.isActive('code') ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>
             <Code size={18}/>
           </button>
+          <button 
+            onClick={() => setShowAIMenu(!showAIMenu)}
+            className={`${showAIMenu ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md relative`}
+          >
+            <div className="relative">
+              <Sparkle size={18} className="-translate-x-1 -translate-y-0.5 text-transparent" style={{ fill: "url(#sparklesGradient)" }} />
+              <Sparkle size={11} className="absolute -bottom-0.5 -right-0.5 text-transparent" style={{ fill: "url(#sparklesGradient)" }} />
+              <svg width="0" height="0">
+                <linearGradient id="sparklesGradient" x1="0%" y1="0%" x2="100%">
+                  <stop stopColor="#BEA1FA" offset="0%" />
+                  <stop stopColor="#FF8C4B" offset="100%" />
+                </linearGradient>
+              </svg>
+            </div>
+            {showAIMenu && <AIContextMenu editor={editor} onClose={() => setShowAIMenu(false)} />}
+          </button>
         </div>
       </BubbleMenu>
+      
       <FloatingMenu editor={editor} tippyOptions={{ duration: 100, placement: 'bottom-start', animation: 'scale-subtle' }}>
         <div className='flex flex-col overflow-auto max-h-72 max-w-fit bg-white border border-gray-400 rounded-md divide-y divide-gray-200 shadow-sm px-2 py-2'>
           <button onClick={() => editor.chain().focus().toggleNode('heading', 'paragraph',{ level: 1 }).run()} className={`${editor.isActive('heading', { level: 1 }) ? 'bg-gray-200 hover:bg-gray-300' : ''} p-2 mx-0.5 hover:bg-gray-200 rounded-md`}>

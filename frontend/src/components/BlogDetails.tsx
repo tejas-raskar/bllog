@@ -6,6 +6,8 @@ import { EditorContent, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { getHierarchicalIndexes, TableOfContentData, TableOfContents } from '@tiptap-pro/extension-table-of-contents'
 import Image from "@tiptap/extension-image"
+import { BlogSummary } from "./BlogSummary"; 
+import { ContentTags } from "./ContentTags"; 
 
 const MemorizedToC = React.memo(ToC)
 
@@ -49,6 +51,12 @@ export const BlogDetails = ({ blog }: { blog: Blog }) => {
                         <div className="flex flex-col justify-center mx-2"><CircleSeparator /></div>
                         <span className="font-medium font-subtitle text-[#BEA1FA]">{blog.publishedOn != null ? new Date(blog.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ""}</span>
                     </div>
+                    {blog.id && (
+                      <BlogSummary blogId={blog.id} blogContent={blog.blog} />
+                    )}
+                    {blog.id && (
+                      <ContentTags blogId={blog.id} blogContent={blog.blog} />
+                    )}
                 </div>
                 {/* <BlogReader type="full" blogJSON={blog.blog} /> */}
                 <EditorContent editor={editor} />

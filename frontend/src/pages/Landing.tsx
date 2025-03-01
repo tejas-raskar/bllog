@@ -1,4 +1,4 @@
-import { Bold, Bookmark, Code, FilePenLine, Github, Heading, Heart, MonitorSmartphone, MousePointer2, Quote, Sparkles, PenLine, Image } from "lucide-react";
+import { Bold, Bookmark, Code, FilePenLine, Github, Heading, Heart, MonitorSmartphone, MousePointer2, Quote, Sparkles, PenLine, Image, Sparkle, ArrowUpRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion";
 
@@ -17,9 +17,9 @@ const FloatingIcons = () => {
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none w-full max-h-[70%] mt-20 hidden md:block">
-            <motion.div 
-                initial="initial" 
-                animate="animate" 
+            <motion.div
+                initial="initial"
+                animate="animate"
                 className="relative w-full h-full max-w-5xl mx-auto px-20"
             >
                 <motion.div variants={iconAnimation} className="absolute top-[15%] left-[5%] md:left-[10%] lg:left-[5%]">
@@ -47,8 +47,8 @@ const FloatingIcons = () => {
 
 const GradientBlob = ({ className = "" }) => (
     <div className={`absolute -z-10 h-full w-full ${className}`}>
-        <div className="absolute bottom-auto left-auto right-0 top-0 h-[400px] w-[400px] md:h-[500px] md:w-[500px] -translate-x-[50%] md:translate-x-[0%] -translate-y-[10%] rounded-full opacity-35 blur-[80px] bg-gradient-to-br from-[#FF8C4B] to-[#BEA1FA]" />
-        <div className="absolute bottom-0 left-0 right-auto top-auto h-[300px] w-[300px] md:h-[500px] md:w-[500px] -translate-x-[20%] translate-y-[20%] hidden md:block rounded-full opacity-35 blur-[80px] bg-gradient-to-tr from-[#BEA1FA] to-[#FF8C4B]" />
+        <div className="absolute bottom-auto left-auto right-0 top-0 h-[400px] w-[400px] md:h-[500px] md:w-[500px] -translate-x-[50%] md:translate-x-[0%] -translate-y-[10%] rounded-full opacity-15 blur-3xl bg-gradient-to-br from-[#FF8C4B] to-[#FF8C4B]" />
+        <div className="absolute bottom-0 left-0 right-auto top-auto h-[500px] w-[500px] md:h-[500px] md:w-[500px] -translate-x-[20%] translate-y-[20%] hidden md:block rounded-full opacity-15 blur-3xl bg-gradient-to-tr from-[#BEA1FA] to-[#BEA1FA]" />
     </div>
 );
 
@@ -131,12 +131,49 @@ export const Landing = () => {
                 </div>
             </div>
         </div>
-        <div className="flex justify-center mt-36 p-10">
+        <div className="flex justify-center mt-32 p-10">
             <div className="flex flex-col items-center">
                 <div className="absolute top-0 -z-10 h-full w-full bg-white">
                     <GradientBlob />
                 </div>
                 <FloatingIcons />
+                <motion.div
+                    className="relative mb-5"
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    <motion.div
+                        className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#FF8C4B] via-[#e57dff] to-[#BEA1FA] blur-sm opacity-80"
+                        animate={{
+                            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                        }}
+                        transition={{
+                            duration: 8,
+                            ease: "linear",
+                            repeat: Infinity,
+                        }}
+                        style={{
+                            backgroundSize: "200% 200%",
+                        }}
+                    />
+                    <div className="relative group cursor-pointer">
+                        <div className="font-subtitle text-md text-center bg-black text-white px-4 py-1.5 rounded-full border border-gray-800 flex items-center justify-center gap-2 transition-all">
+                            <div className="relative mr-0.5">
+                                <Sparkle size={15} className="-translate-x-1 -translate-y-1 text-transparent" style={{ fill: "url(#sparklesGradient)" }} />
+                                <Sparkle size={11} className="absolute -bottom-0.5 -right-0.5 text-transparent" style={{ fill: "url(#sparklesGradient)" }} />
+                                <svg width="0" height="0">
+                                    <linearGradient id="sparklesGradient" x1="0%" y1="0%" x2="100%">
+                                        <stop stopColor="#BEA1FA" offset="0%" />
+                                        <stop stopColor="#FF8C4B" offset="100%" />
+                                    </linearGradient>
+                                </svg>
+                            </div>
+                            AI features are now live
+                            <span className="ml-0.5 opacity-75 group-hover:opacity-100 transition-opacity duration-300 text-xs bg-[#BEA1FA]/20 px-1.5 py-0.5 rounded-full text-[#BEA1FA]">New</span>
+                        </div>
+                    </div>
+                </motion.div>
                 <motion.div className="max-w-3xl relative" {...fadeInUp}>
 
                     <div className="mx-auto font-headline text-5xl md:text-6xl text-balance max-w-xl text-center leading-tight font-semibold">
@@ -148,13 +185,32 @@ export const Landing = () => {
                     <div className="mt-4 text-center text-xl text-balance font-subtitle font-light">
                         Start blogging without the hassle. Focus on your story, not the setup.
                     </div>
-                    <motion.div className="flex justify-center mt-6" {...fadeInUpDelayed}>
-                        <button onClick={() => navigate('/signup')} className="mx-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/20">
-                            Get started
-                        </button>
-                        <button onClick={() => navigate('/try-editor')} className="mx-2 hover:bg-[#BEA1FA] border-2 bg-white hover:border-2 border-[#BEA1FA] rounded-full px-4 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/20">
-                            Try Editor
-                        </button>
+                    <motion.div className="flex justify-center mt-6 gap-4" {...fadeInUpDelayed}>
+                        <motion.button 
+                            onClick={() => navigate('/signup')} 
+                            className="flex items-center gap-2 bg-[#BEA1FA] border-2 hover:bg-white hover:border-2 border-[#BEA1FA] rounded-full px-5 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/30 group"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <span>Get started</span>
+                            <motion.div 
+                                initial={{ x: 0 }} 
+                                animate={{ x: [0, 5, 0] }} 
+                                transition={{ repeat: Infinity, repeatDelay: 2.5, duration: 1 }} 
+                                className="bg-white bg-opacity-30 rounded-full p-0.5"
+                            >
+                                <ArrowUpRight size={18} />
+                            </motion.div>
+                        </motion.button>
+                        
+                        <motion.button 
+                            onClick={() => navigate('/try-editor')} 
+                            className="flex items-center gap-2 hover:bg-[#BEA1FA] border-2 bg-white hover:border-2 border-[#BEA1FA] rounded-full px-5 py-3 text-lg font-subtitle font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#BEA1FA]/20 group"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <span>Try Editor</span>
+                        </motion.button>
                     </motion.div>
                 </motion.div>
                 <motion.div {...imageSlideUp}>

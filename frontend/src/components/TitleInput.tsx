@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useRef} from "react";
+import { TitleGenerator } from "./TitleGenerator"; // Add this import
 
-export const TitleInput = ({ title, setTitle }: {title: string, setTitle:any}) => {
+export const TitleInput = ({ title, setTitle, editor }: {title: string, setTitle:any, editor?: any}) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -15,7 +16,7 @@ export const TitleInput = ({ title, setTitle }: {title: string, setTitle:any}) =
     }, [title]);
 
     return (
-        <div className=''>
+        <div className='flex justify-between'>
             <textarea
                 maxLength={150}
                 placeholder="Article Title"
@@ -24,7 +25,10 @@ export const TitleInput = ({ title, setTitle }: {title: string, setTitle:any}) =
                 onChange={handleChange}
                 rows={1}
                 ref={textAreaRef}
-            ></textarea>
+            ></textarea>            
+            <div className="m-auto">
+                {editor && <TitleGenerator editor={editor} setTitle={setTitle} currentTitle={title} />}
+            </div>
         </div>
     );
 };
