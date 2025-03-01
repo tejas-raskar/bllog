@@ -1,4 +1,4 @@
-import { Bold, Bookmark, Code, FilePenLine, Github, Heading, Heart, MonitorSmartphone, MousePointer2, Quote, Sparkles, PenLine, Image, Sparkle, ArrowUpRight, BookOpenCheckIcon, SwatchBook, FileArchive, Maximize2 } from "lucide-react";
+import { Bold, Bookmark, Code, FilePenLine, Github, Heading, Heart, MonitorSmartphone, MousePointer2, Quote, Sparkles, PenLine, Image, Sparkle, ArrowUpRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion";
 
