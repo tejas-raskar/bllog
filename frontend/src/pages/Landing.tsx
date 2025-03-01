@@ -175,15 +175,14 @@ export const Landing = () => {
                     </div>
                 </motion.div>
                 <motion.div className="max-w-3xl relative" {...fadeInUp}>
-
-                    <div className="mx-auto font-headline text-4xl md:text-6xl md:text-balance max-w-xl text-center leading-tight font-semibold">
+                    <div className="mx-auto font-headline text-5xl md:text-6xl text-balance max-w-xl text-center leading-tight font-semibold">
                         Effortlessly publish bllogs in{" "}
                         <span className="relative inline-block highlight">
                             minutes
                         </span>
                     </div>
                     <div className="mt-4 text-center text-base md:text-xl text-balance font-subtitle font-light">
-                        Start blogging without the hassle. Focus on your story, not the setup.
+                        Focus on your story, not the setup.
                     </div>
                     <motion.div className="flex justify-center mt-6 gap-4" {...fadeInUpDelayed}>
                         <motion.button
@@ -253,26 +252,25 @@ export const Landing = () => {
                                         <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
                                     </div>
                                 </motion.div>
-                                <motion.div className="md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-fullhover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
-                                    <div className="p-8 pb-0">
-                                        <div className="font-headline font-bold text-xl text-left pb-2">
+                                <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
+                                    <div className="p-4 md:p-8 pb-0">
+                                        <div className="font-headline font-bold text-balance text-xl text-left pb-2">
                                             Table of Contents
                                         </div>
-                                        <div className="font-subtitle text-lg text-gray-800">
+                                        <div className="font-subtitle text-base md:text-lg text-gray-800">
                                             Click to jump to a section. Updates automatically
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110  translate-y-6 w-[90%] object-cover" />
+                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
                                     </div>
                                 </motion.div>
-
-                                <motion.div className="md:col-span-2 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-fullhover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
-                                    <div className="p-8 pb-0">
-                                        <div className="font-headline font-bold text-xl text-left pb-2">
+                                <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
+                                    <div className="p-4 md:p-8 pb-0">
+                                        <div className="font-headline font-bold text-balance text-xl text-left pb-2">
                                             Advanced blocks
                                         </div>
-                                        <div className="font-subtitle text-lg text-gray-800">
+                                        <div className="font-subtitle text-base md:text-lg text-gray-800">
                                             All the fancy blocks you crave, without the headache
                                         </div>
                                     </div>
