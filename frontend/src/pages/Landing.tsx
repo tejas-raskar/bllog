@@ -116,6 +116,7 @@ export const Landing = () => {
                         <a href="https://github.com/tejas-raskar/bllog  "
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="GitHub Repository"
                             className="mr-2 hover:text-gray-900 transition-colors flex items-center gap-1">
                             <Github size={18} />
                         </a>
@@ -213,7 +214,7 @@ export const Landing = () => {
                     </motion.div>
                 </motion.div>
                 <motion.div {...imageSlideUp}>
-                    <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" />
+                    <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" alt="Bllog platform interface showcasing the blog page with features such as automatic table of content generation, ai generated summary, relevant tags" />
                 </motion.div>
                 <div className="relative">
                     <GradientBlob />
@@ -249,7 +250,7 @@ export const Landing = () => {
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                        <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Markdown editor interface in Bllog"/>
                                     </div>
                                 </motion.div>
                                 <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
@@ -262,7 +263,7 @@ export const Landing = () => {
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Automatic table of content generation for easier navigation"/>
                                     </div>
                                 </motion.div>
                                 <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
@@ -275,7 +276,7 @@ export const Landing = () => {
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/adv_blocks.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" />
+                                        <img src="/assets/adv_blocks.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Advanced block options such as images, code blocks, quotes can be used in the Bllog editor" />
                                     </div>
                                 </motion.div>
                             </div>
