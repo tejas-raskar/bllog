@@ -1,6 +1,7 @@
 import { Bold, Bookmark, Code, FilePenLine, Github, Heading, Heart, MonitorSmartphone, MousePointer2, Quote, Sparkles, PenLine, Image, Sparkle, ArrowUpRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion";
+import { PeerlistLaunchBadge } from "../components/PeerlistLaunchBadge";
 
 const FloatingIcons = () => {
     const iconAnimation = {
@@ -138,6 +139,7 @@ export const Landing = () => {
                     <GradientBlob />
                 </div>
                 <FloatingIcons />
+
                 <motion.div
                     className="relative mb-5"
                     initial={{ y: -10, opacity: 0 }}
@@ -158,7 +160,7 @@ export const Landing = () => {
                             backgroundSize: "200% 200%",
                         }}
                     />
-                    <div className="relative group cursor-pointer">
+                    <div className="relative group">
                         <div className="font-subtitle text-md text-center bg-black text-white px-4 py-1.5 rounded-full border border-gray-800 flex items-center justify-center gap-2 transition-all">
                             <div className="relative mr-0.5">
                                 <Sparkle size={15} className="-translate-x-1 -translate-y-1 text-transparent" style={{ fill: "url(#sparklesGradient)" }} />
@@ -213,6 +215,11 @@ export const Landing = () => {
                         </motion.button>
                     </motion.div>
                 </motion.div>
+                <motion.div className="mt-10 mx-auto" {...imageSlideUp}>
+                    <a href="https://peerlist.io/traskar/project/bllog">
+                        <PeerlistLaunchBadge />
+                    </a>
+                </motion.div>
                 <motion.div {...imageSlideUp}>
                     <img src="/assets/blog.png" className="scale-75 rounded-xl ring-gray-200 ring-2 filter drop-shadow-2xl" alt="Bllog platform interface showcasing the blog page with features such as automatic table of content generation, ai generated summary, relevant tags" />
                 </motion.div>
@@ -250,7 +257,7 @@ export const Landing = () => {
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Markdown editor interface in Bllog"/>
+                                        <img src="/assets/markdown.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Markdown editor interface in Bllog" />
                                     </div>
                                 </motion.div>
                                 <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
@@ -263,7 +270,7 @@ export const Landing = () => {
                                         </div>
                                     </div>
                                     <div className="overflow-hidden h-48 relative">
-                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Automatic table of content generation for easier navigation"/>
+                                        <img src="/assets/toc.png" className="ring-1 ring-gray-200 rounded-lg shadow-2xl absolute transform translate-x-11 scale-110 translate-y-6 w-[90%] object-cover" alt="Automatic table of content generation for easier navigation" />
                                     </div>
                                 </motion.div>
                                 <motion.div className="col-span-1 md:col-span-1 lg:col-span-4 bg-gray-200/40 overflow-clip ring-1 ring-gray-300 rounded-xl h-full hover:ring-2 hover:ring-[#FF8C4B] transition-all" {...cardHoverAnimation}>
